@@ -54,6 +54,14 @@
       }
     },
     {
+      "name": "frog",
+      "titles": {
+        "en": "Frog",
+        "es": "Rana",
+        "ru": "Лягушка"
+      }
+    },
+    {
       "name": "goat",
       "titles": {
         "en": "Goat",
@@ -86,6 +94,14 @@
       }
     },
     {
+      "name": "panda",
+      "titles": {
+        "en": "Panda",
+        "es": "Panda",
+        "ru": "Панда"
+      }
+    },
+    {
       "name": "pig",
       "titles": {
         "en": "Pig",
@@ -107,6 +123,14 @@
         "en": "Sheep",
         "es": "Oveja",
         "ru": "Овца"
+      }
+    },
+    {
+      "name": "snake",
+      "titles": {
+        "en": "Snake",
+        "es": "Serpiente",
+        "ru": "Змея"
       }
     },
     {

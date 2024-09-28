@@ -9,6 +9,8 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'img/apple-touch-icon.png'],
       manifest: {
         name: 'FUN app',
         short_name: 'Fun',
@@ -19,13 +21,16 @@ export default defineConfig({
         theme_color: '#e07d26',
         icons: [
           {
-            src: '/img/icons/mstile-150x150.png',
-            sizes: '72x72',
+            src: '/img/icons/android-chrome-192x192.png',
+            sizes: '192x192',
             type: 'image/png',
           },
           // Add more icons for different resolutions as needed
         ],
         workboxPluginMode: 'InjectManifest',
+        workbox: {
+          globPatterns: ['**/*.{js,css}', 'index.html'],
+        },
       },
     }),
   ],

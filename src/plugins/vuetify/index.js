@@ -1,4 +1,3 @@
-import { watch } from 'vue'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -7,6 +6,7 @@ import { ru, en, es } from 'vuetify/locale'
 import '@mdi/font/css/materialdesignicons.css'
 import i18n from '@/plugins/i18n'
 import customIcons from './customIcons.js'
+import { customDarkTheme, customLightTheme } from './themes.js'
 
 const { locale } = i18n.global
 
@@ -20,6 +20,13 @@ const vuetify = createVuetify({
   },
   icons: {
     sets: { custom: customIcons },
+  },
+  theme: {
+    defaultTheme: 'customDarkTheme',
+    themes: {
+      customDarkTheme,
+      customLightTheme,
+    },
   },
 })
 
