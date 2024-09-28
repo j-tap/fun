@@ -4,7 +4,7 @@ v-app(:theme="theme")
     template(v-slot:append)
       v-app-bar-nav-icon(variant="text" @click.stop="drawer = !drawer")
     v-toolbar-title
-      router-link.d-flex.align-center.text-pink.no-link(to="/")
+      router-link.d-flex.align-center.text-deep-orange.no-link(to="/")
         v-icon.mr-2(size="sm") mdi-emoticon
         span.text-button FUN
 

@@ -10,13 +10,13 @@ export default defineConfig({
     vue(),
     VitePWA({
       manifest: {
-        name: 'My ToDo App',
-        short_name: 'ToDo',
-        description: 'A ToDo progressive web app',
+        name: 'FUN app',
+        short_name: 'Fun',
+        description: 'A fun app for kids',
         start_url: '/',
         display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#41b383',
+        background_color: '#000',
+        theme_color: '#e07d26',
         icons: [
           {
             src: '/img/icons/icon-72x72.png',
@@ -25,6 +25,7 @@ export default defineConfig({
           },
           // Add more icons for different resolutions as needed
         ],
+        workboxPluginMode: 'InjectManifest',
       },
     }),
   ],

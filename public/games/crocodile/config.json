@@ -70,6 +70,14 @@
       }
     },
     {
+      "name": "hamster",
+      "titles": {
+        "en": "Hamster",
+        "es": "Hámster",
+        "ru": "Хомяк"
+      }
+    },
+    {
       "name": "horse",
       "titles": {
         "en": "Horse",
@@ -107,6 +115,14 @@
         "en": "Turkey",
         "es": "Pavo",
         "ru": "Индюк"
+      }
+    },
+    {
+      "name": "turtle",
+      "titles": {
+        "en": "Turtle",
+        "es": "Tortuga",
+        "ru": "Черепаха"
       }
     }
   ]
