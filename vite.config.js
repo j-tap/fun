@@ -10,27 +10,43 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'img/apple-touch-icon.png'],
+      includeAssets: ['favicon.ico', 'assets/*', 'img/*', 'games/*'],
       manifest: {
         name: 'FUN app',
-        short_name: 'Fun',
-        description: 'A fun app for kids',
-        start_url: '/',
-        display: 'standalone',
-        background_color: '#000',
         theme_color: '#e07d26',
-        icons: [
-          {
-            src: '/img/icons/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          // Add more icons for different resolutions as needed
-        ],
-        workboxPluginMode: 'InjectManifest',
-        workbox: {
-          globPatterns: ['**/*.{js,css}', 'index.html'],
-        },
+        msTileColor: '#e07d26',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black',
+        workboxPluginMode: 'GenerateSW',
+        workboxOptions: {
+          skipWaiting: true,
+          clientsClaim: true,
+          swSrc: 'dev/sw.js',
+          runtimeCaching: [
+            {
+              urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|woff)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'images',
+                expiration: {
+                  maxEntries: 50,
+                  maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            },
+            {
+              urlPattern: new RegExp('https://fonts.(gstatic|googleapis).*'),
+              handler: 'CacheFirst',
+              method: 'GET',
+              options: {
+                cacheableResponse: { statuses: [0, 200] },
+              }
+            },
+          ],
+        }
       },
     }),
   ],
