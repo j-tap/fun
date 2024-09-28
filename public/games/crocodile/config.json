@@ -1,0 +1,113 @@
+{
+  "title": "Крокодил",
+  "description": "Игра на угадывание слов. Можно играть командами или по одиночке. Каждая команда или игрок по-очереди пытается угадать слово или фразу. Тому, кто показывает не разрешается говорить, только жестикулировать, показывать, изображать. Команда или игрок, правильно угадавшие слово или фразу, получает очко. Побеждает команда или игрок, набравшая наибольшее количество очков в конце игры",
+  "players": "2+",
+  "tags": ["guessing", "team"],
+  "related": ["Pictionary", "Taboo", "Heads Up!"],
+  "items": [
+    {
+      "name": "cat",
+      "titles": {
+        "en": "Cat",
+        "es": "Gato",
+        "ru": "Кот"
+      }
+    },
+    {
+      "name": "chicken",
+      "titles": {
+        "en": "Chicken",
+        "es": "Pollo",
+        "ru": "Курица"
+      }
+    },
+    {
+      "name": "cow",
+      "titles": {
+        "en": "Cow",
+        "es": "Vaca",
+        "ru": "Корова"
+      }
+    },
+    {
+      "name": "dog",
+      "titles": {
+        "en": "Dog",
+        "es": "Perro",
+        "ru": "Собака"
+      }
+    },
+    {
+      "name": "donkey",
+      "titles": {
+        "en": "Donkey",
+        "es": "Burro",
+        "ru": "Осел"
+      }
+    },
+    {
+      "name": "duck",
+      "titles": {
+        "en": "Duck",
+        "es": "Pato",
+        "ru": "Утка"
+      }
+    },
+    {
+      "name": "goat",
+      "titles": {
+        "en": "Goat",
+        "es": "Cabra",
+        "ru": "Коза"
+      }
+    },
+    {
+      "name": "goose",
+      "titles": {
+        "en": "Goose",
+        "es": "Ganso",
+        "ru": "Гусь"
+      }
+    },
+    {
+      "name": "horse",
+      "titles": {
+        "en": "Horse",
+        "es": "Caballo",
+        "ru": "Лошадь"
+      }
+    },
+    {
+      "name": "pig",
+      "titles": {
+        "en": "Pig",
+        "es": "Cerdo",
+        "ru": "Свинья"
+      }
+    },
+    {
+      "name": "rabbit",
+      "titles": {
+        "en": "Rabbit",
+        "es": "Conejo",
+        "ru": "Кролик"
+      }
+    },
+    {
+      "name": "sheep",
+      "titles": {
+        "en": "Sheep",
+        "es": "Oveja",
+        "ru": "Овца"
+      }
+    },
+    {
+      "name": "turkey",
+      "titles": {
+        "en": "Turkey",
+        "es": "Pavo",
+        "ru": "Индюк"
+      }
+    }
+  ]
+}
