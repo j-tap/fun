@@ -19,7 +19,7 @@ export default defineConfig({
         theme_color: '#e07d26',
         icons: [
           {
-            src: '/img/icons/icon-72x72.png',
+            src: '/img/icons/mstile-150x150.png',
             sizes: '72x72',
             type: 'image/png',
           },
