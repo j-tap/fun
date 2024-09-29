@@ -12,12 +12,16 @@ v-container(fluid)
           .d-flex.justify-center
             v-btn(color="primary" @click="getItem") {{ $t('new_task') }}
 
-          .text-h4.text-center.mt-4 {{ currentItem?.titles[locale] }}
-          v-img.mt-2(
-            :src="currentItem?.src"
-            :alt="currentItem?.name"
-            rounded
-          )
+          .d-flex.justify-center
+            CardsStack.mt-12(ref="elCardsStack")
+              .d-flex.flex-column.w-100
+                .text-h4.text-center {{ currentItem?.titles[locale] }}
+                v-img(
+                  :src="currentItem?.src"
+                  :alt="currentItem?.name"
+                  aspect-ratio="1"
+                  full-width
+                )
 
     v-card-text
       v-expansion-panels
@@ -38,9 +42,10 @@ v-container(fluid)
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import CardsStack from '@/components/CardsStack/index.vue'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import useArray from '@/composables/useArray.js'
+import useArray from '@/composables/useArray'
 
 const { locale } = useI18n()
 const { shuffleArray } = useArray()
@@ -48,6 +53,7 @@ const path = '/games/crocodile'
 const config = ref(null)
 const currentItem = ref(null)
 const items = ref([])
+const elCardsStack = ref(null)
 let counter = 0
 
 fetch(`${path}/config.json`).then(async response => {
@@ -63,11 +69,13 @@ function initItems (arr = []) {
   }))
 }
 
-function getItem () {
+async function getItem () {
   if (counter >= items.value.length) {
     initItems(config.value?.items)
     counter = 0
   }
+
+  await elCardsStack.value.openCard()
 
   currentItem.value = items.value[counter]
   counter++
