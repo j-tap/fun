@@ -10,7 +10,7 @@ v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" sm="6" md="5" lg="4")
           .d-flex.justify-center
-            v-btn(color="success" @click="getRand") {{ $t('new_task') }}
+            v-btn(color="success" @click="getItem") {{ $t('new_task') }}
           .text-h4.text-center.mt-4 {{ item?.titles[locale] }}
           v-img.mt-2(
             v-if="item"
@@ -28,46 +28,35 @@ v-container(fluid)
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import useArray from '@/composables/useArray.js'
 
 const { locale } = useI18n()
+const { shuffleArray } = useArray()
 const path = '/games/crocodile'
 const config = ref(null)
-const lastItems = ref([])
 const item = ref(null)
-const items = computed(() => config.value.items)
-const maxHistory = computed(() => Math.min(5, items.value.length))
-let attempts = 0
+const items = ref([])
+let counter = 0
 
 fetch(`${path}/config.json`).then(async response => {
   config.value = await response.json()
+  items.value = shuffleArray(config.value?.items)
 })
 
-function getRand () {
-  if (attempts > 10) {
-    console.error('No images found, attempts:', attempts)
-    return
+function getItem () {
+  if (counter >= items.value.length) {
+    items.value = shuffleArray(config.value.items)
+    counter = 0
   }
 
-  const info = items.value[Math.floor(Math.random() * items.value.length)]
-
-  if (lastItems.value.includes(info.name)) {
-    attempts++
-    return getRand()
-  }
-
-  attempts = 0
+  const info = items.value[counter]
+  counter++
 
   item.value = {
     ...info,
     src: `${path}/images/${info.name}.webp`,
-  }
-
-  lastItems.value.push(info.name)
-
-  if (lastItems.value.length > maxHistory.value) {
-    lastItems.value.shift()
   }
 }
 </script>
