@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { register } from 'register-service-worker'
 
 if (import.meta.env.VITE_APP_NODE_ENV !== 'dev') {

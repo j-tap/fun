@@ -10,57 +10,13 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['/favicon.ico', '/assets/*', '/img/*', '/games/*'],
-      manifest: {
-        name: 'FUN app',
-        theme_color: '#e07d26',
-        msTileColor: '#e07d26',
-        appleMobileWebAppCapable: 'yes',
-        appleMobileWebAppStatusBarStyle: 'black',
-        workboxPluginMode: 'GenerateSW',
-        workboxOptions: {
-          skipWaiting: true,
-          clientsClaim: true,
-          swDest: '/sw.js',
-          runtimeCaching: [
-            {
-              urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'images',
-                expiration: {
-                  maxEntries: 50,
-                  maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
-                }
-              }
-            },
-            {
-              urlPattern: /\.(?:woff|woff2)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'fonts',
-                expiration: {
-                  maxEntries: 50,
-                  maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
-                },
-                cacheableResponse: {
-                  statuses: [0, 200]
-                }
-              }
-            },
-            {
-              urlPattern: new RegExp('https://fonts.(gstatic|googleapis).*'),
-              handler: 'CacheFirst',
-              method: 'GET',
-              options: {
-                cacheableResponse: { statuses: [0, 200] },
-              }
-            },
-          ],
-        }
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webmanifest,webp}'],
+      },
+      devOptions: {
+        enabled: true,
       },
     }),
   ],
