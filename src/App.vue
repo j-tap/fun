@@ -55,7 +55,7 @@ import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
 import { useCommonStore } from '@/store/common'
 
-const { locale, availableLocales } = useI18n()
+const { locale, availableLocales, t } = useI18n()
 const commonStore = useCommonStore()
 const { xsOnly } = useDisplay()
 const theme = computed(() => commonStore.theme)
@@ -72,10 +72,10 @@ const drawer = computed({
   },
 })
 const flat = ref(true)
-const items = ref([
-  ['custom:crocodile', 'Crocodile', '/games/crocodile'],
+const items = computed(() => ([
+  ['custom:crocodile', t('games.crocodile.title'), '/games/crocodile'],
   ['mdi-home-outline', 'Test', '/test'],
-])
+]))
 const year = new Date().getFullYear()
 
 locale.value = localeCurrent.value

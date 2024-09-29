@@ -2,7 +2,7 @@
 v-container(fluid)
   v-card(
     v-if="config"
-    :title="config.title"
+    :title="$t('games.crocodile.title')"
     variant="elevated"
     prepend-icon="custom:crocodile"
   )
@@ -18,13 +18,13 @@ v-container(fluid)
             :alt="name"
             rounded
           )
-          //pre {{ config }}
+
     v-card-text
       v-expansion-panels
-        v-expansion-panel(
-          :title="$t('description')"
-          :text="config.description"
-        )
+        v-expansion-panel
+          v-expansion-panel-title {{ $t('description') }}
+          v-expansion-panel-text
+            .text-pre-wrap(v-html="$t('games.crocodile.description')")
 </template>
 
 <script setup>

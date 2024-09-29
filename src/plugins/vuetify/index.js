@@ -6,7 +6,7 @@ import { ru, en, es } from 'vuetify/locale'
 import '@mdi/font/css/materialdesignicons.css'
 import i18n from '@/plugins/i18n'
 import customIcons from './customIcons.js'
-import { customDarkTheme, customLightTheme } from './themes.js'
+import { dark, light } from './themes.js'
 
 const { locale } = i18n.global
 
@@ -22,10 +22,10 @@ const vuetify = createVuetify({
     sets: { custom: customIcons },
   },
   theme: {
-    defaultTheme: 'customDarkTheme',
+    defaultTheme: 'dark',
     themes: {
-      customDarkTheme,
-      customLightTheme,
+      dark,
+      light,
     },
   },
 })

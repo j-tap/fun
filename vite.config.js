@@ -21,7 +21,7 @@ export default defineConfig({
         workboxOptions: {
           skipWaiting: true,
           clientsClaim: true,
-          swSrc: 'dev/sw.js',
+          swDest: '/sw.js',
           runtimeCaching: [
             {
               urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,

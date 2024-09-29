@@ -27,3 +27,9 @@ yarn dev
 ```sh
 yarn build
 ```
+
+### Local testing build
+
+```sh
+yarn preview
+```

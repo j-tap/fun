@@ -1,5 +1,10 @@
 {
   "games": "Juegos",
   "new_task": "Nueva tarea",
-  "description": "Descripción"
+  "description": "Descripción",
+
+  "home.title": "Inicio",
+
+  "games.crocodile.title": "Cocodrilo",
+  "games.crocodile.description": "Juego de adivinanzas de palabras.\nPuedes jugar en equipos o individualmente. Cada equipo o jugador intenta adivinar la palabra o frase por turnos.\nA la persona que muestra no se le permite hablar, solo hacer gestos, mostrar, representar.\nEl equipo o jugador que adivine correctamente la palabra o frase obtiene un punto y toma el lugar del explicador.\nEl equipo o jugador que obtenga la mayor cantidad de puntos al final del juego gana"
 }

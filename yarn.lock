@@ -5035,7 +5035,6 @@ __metadata:
     pug: "npm:^3.0.3"
     register-service-worker: "npm:^1.7.2"
     sass: "npm:^1.79.3"
-    sweetalert2: "npm:^11.14.1"
     vite: "npm:^5.3.1"
     vite-plugin-pwa: "npm:^0.20.5"
     vite-plugin-vuetify: "npm:^2.0.4"
@@ -9108,13 +9107,6 @@ __metadata:
   bin:
     svgo: bin/svgo
   checksum: 0741f5d5cad63111a90a0ce7a1a5a9013f6d293e871b75efe39addb57f29a263e45294e485a4d2ff9cc260a5d142c8b5937b2234b4ef05efdd2706fb2d360ecc
-  languageName: node
-  linkType: hard
-
-"sweetalert2@npm:^11.14.1":
-  version: 11.14.1
-  resolution: "sweetalert2@npm:11.14.1"
-  checksum: 06620bc7c179a3317a6362795f6dd8d7721e747347e6fe73cc636260b8cf4c2e4efaf91bcf29a98d6bcb7d8dd1ef7dda64fe81e37c05acd66650a0c864384935
   languageName: node
   linkType: hard
 
