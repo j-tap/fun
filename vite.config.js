@@ -17,8 +17,8 @@ export default defineConfig({
       filename: 'sw.js',
       includeAssets: [
         'favicon.ico',
-        'assets/*.*',
-        'games/**/*',
+        'assets/**/*.*',
+        'games/**/*.*',
       ],
       manifest: {
         name: 'FUN app',
@@ -41,6 +41,19 @@ export default defineConfig({
         clientsClaim: true,
         skipWaiting: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webmanifest,webp,woff,woff2,ttf,eot}'],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:woff|woff2|ttf)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'font-cache',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 360 * 24 * 3600,
+              },
+            },
+          },
+        ],
       },
       devOptions: {
         enabled: true,
