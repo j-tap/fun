@@ -26,6 +26,7 @@ export default defineConfig({
         name: 'FUN app',
         description: 'A fun app with games and other',
         theme_color: '#e07d26',
+        display: 'standalone',
         icons: [
           {
             src: '/img/icons/android-chrome-192x192.png',
