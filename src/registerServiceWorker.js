@@ -2,8 +2,8 @@
 
 import { register } from 'register-service-worker'
 
-if (import.meta.env.VITE_APP_NODE_ENV === 'production') {
-  register(`${import.meta.env.VITE_APP_BASE_URL}sw.js`, {
+if (import.meta.env.VITE_APP_NODE_ENV !== 'dev') {
+  register('/sw.js', {
     ready () {
       console.info('ServiceWorker: You can use this app even without an internet connection.')
     },
