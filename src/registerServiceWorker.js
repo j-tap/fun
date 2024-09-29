@@ -1,7 +1,7 @@
 import { register } from 'register-service-worker'
 
 if (import.meta.env.VITE_APP_NODE_ENV !== 'dev') {
-  register('/sw.js', {
+  register(`${import.meta.env.BASE_URL}sw.js`, {
     ready () {
       console.info('ServiceWorker: You can use this app even without an internet connection.')
     },

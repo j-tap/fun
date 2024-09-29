@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
+import vuetify from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,15 +11,44 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
+      strategies: 'generateSW',
+      injectRegister: 'auto',
+      srcDir: 'src',
+      filename: 'sw.js',
+      includeAssets: [
+        'favicon.ico',
+        'assets/*.*',
+        'games/**/*',
+      ],
+      manifest: {
+        name: 'FUN app',
+        description: 'A fun app with games and other',
+        theme_color: '#e07d26',
+        icons: [
+          {
+            src: '/img/icons/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/img/icons/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      },
       workbox: {
         clientsClaim: true,
         skipWaiting: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webmanifest,webp}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webmanifest,webp,woff,woff2,ttf,eot}'],
       },
       devOptions: {
         enabled: true,
       },
     }),
+    vuetify({
+      styles: { configFile: 'src/assets/sass/vuetifySettings.scss' },
+    })
   ],
   server: {
     host: '0.0.0.0',
@@ -28,5 +58,5 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
 })
