@@ -10,7 +10,7 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'assets/*', 'img/*', 'games/*'],
+      includeAssets: ['/favicon.ico', '/assets/*', '/img/*', '/games/*'],
       manifest: {
         name: 'FUN app',
         theme_color: '#e07d26',
