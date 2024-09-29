@@ -1,6 +1,8 @@
 {
     "name": "FUN app",
-    "short_name": "",
+    "id": "fun-app",
+    "description": "FUN app — game and learning service",
+    "short_name": "FUN app",
     "icons": [
         {
             "src": "/img/icons/android-chrome-192x192.png",
@@ -13,7 +15,15 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    "theme_color": "#e07d26",
+    "background_color": "#101315",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "start_url": "/",
+    "dir": "auto",
+    "categories": [
+      "education",
+      "games",
+      "kids"
+    ]
 }

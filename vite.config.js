@@ -25,8 +25,11 @@ export default defineConfig({
       manifest: {
         name: 'FUN app',
         description: 'A fun app with games and other',
+        short_name: "FUN app",
         theme_color: '#e07d26',
+        background_color: '#101315',
         display: 'standalone',
+        start_url: '/',
         icons: [
           {
             src: '/img/icons/android-chrome-192x192.png',
