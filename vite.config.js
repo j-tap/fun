@@ -17,7 +17,9 @@ export default defineConfig({
       filename: 'sw.js',
       includeAssets: [
         'favicon.ico',
+        'assets/*.*',
         'assets/**/*.*',
+        'games/*.*',
         'games/**/*.*',
       ],
       manifest: {
