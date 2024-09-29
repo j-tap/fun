@@ -1,6 +1,6 @@
 const themeColors = {
   primary: '#e07d26',
-  secondary: '#00725f',
+  secondary: '#46537a',
   error: '#b75280',
   info: '#7d568b',
   success: '#007c43',
