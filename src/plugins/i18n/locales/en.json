@@ -1,5 +1,6 @@
 {
   "games": "Games",
+  "players": "Players",
   "new_task": "New task",
   "description": "Description",
   "close": "Close",
@@ -7,5 +8,8 @@
   "home.title": "Home",
 
   "games.crocodile.title": "Crocodile",
-  "games.crocodile.description": "Word guessing game.\nYou can play in teams or individually.\nEach team or player takes turns trying to guess the word or phrase.\nThe person showing is not allowed to speak, only to gesture, show, represent.\nThe team or player that correctly guesses the word or phrase gets a point and takes the place of the explainer.\nThe team or player with the most points at the end of the game wins"
+  "games.crocodile.description": "Word guessing game.\nYou can play in teams or individually.\nEach team or player takes turns trying to guess the word or phrase.\nThe person showing is not allowed to speak, only to gesture, show, represent.\nThe team or player that correctly guesses the word or phrase gets a point and takes the place of the explainer.\nThe team or player with the most points at the end of the game wins",
+
+  "games.jeopardy.title": "Jeopardy",
+  "games.jeopardy.description": "A game of knowledge.\nPlayers answer quiz questions.\nQuestions are divided into categories and have different values.\nPlayers select questions and answer them.\nThe correct answer brings points, the wrong one takes them away.\nThe player with the most points at the end of the game wins."
 }

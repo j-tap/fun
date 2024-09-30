@@ -18,15 +18,7 @@ v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" sm="6" md="5" lg="4")
           .d-flex.justify-center
-            v-btn(
-              v-microanim
-              :text="$t('new_task')"
-              color="primary"
-              @click="getItem"
-            )
-
-          .d-flex.justify-center
-            CardsStack.my-12(ref="elCardsStack")
+            CardsStack.mt-2.mb-12(ref="elCardsStack")
               .d-flex.flex-column.w-100
                 .text-h4.text-center.mb-2 {{ currentItem?.titles[locale] }}
                 v-img(
@@ -35,7 +27,15 @@ v-container(fluid)
                   aspect-ratio="1"
                   full-width
                 )
+          .d-flex.justify-center
+            v-btn(
+              v-microanim
+              :text="$t('new_task')"
+              color="primary"
+              @click="getItem"
+            )
       Dev
+        .mb-2 Count: {{ items.length }}
         ul
           li.d-flex(v-for="item in items" :key="item.name")
             img(:src="item.src" :alt="item.name" style="width:48px")
