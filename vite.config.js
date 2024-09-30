@@ -26,8 +26,8 @@ export default defineConfig({
         name: 'FUN app',
         description: 'A fun app with games and other',
         short_name: "FUN app",
-        theme_color: '#e07d26',
-        background_color: '#101315',
+        theme_color: '#b68f40',
+        background_color: '#121212',
         display: 'standalone',
         start_url: '/',
         icons: [

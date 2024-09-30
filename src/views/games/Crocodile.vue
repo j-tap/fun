@@ -6,39 +6,40 @@ v-container(fluid)
     variant="elevated"
     prepend-icon="custom:crocodile"
   )
+    template(v-slot:append)
+      v-btn(
+        color="info"
+        variant="icon"
+        icon="mdi-information-slab-box"
+        @click="displayDialogInfo = true"
+      )
     v-card-text.mt-6
       v-row(justify="center")
         v-col(cols="12" sm="6" md="5" lg="4")
           .d-flex.justify-center
-            v-btn(color="primary" @click="getItem") {{ $t('new_task') }}
+            v-btn(color="primary" :text="$t('new_task')" @click="getItem")
 
           .d-flex.justify-center
-            CardsStack.mt-12(ref="elCardsStack")
+            CardsStack.my-12(ref="elCardsStack")
               .d-flex.flex-column.w-100
-                .text-h4.text-center {{ currentItem?.titles[locale] }}
+                .text-h4.text-center.mb-2 {{ currentItem?.titles[locale] }}
                 v-img(
                   :src="currentItem?.src"
                   :alt="currentItem?.name"
                   aspect-ratio="1"
                   full-width
                 )
-
-    v-card-text
-      v-expansion-panels
-        v-expansion-panel
-          v-expansion-panel-title {{ $t('description') }}
-          v-expansion-panel-text
-            .text-pre-wrap(v-html="$t('games.crocodile.description')")
-
-      //v-list
-        v-list-item(
-          v-for="(item, index) in items"
-          :key="index"
-        )
-          //pre {{ item }}
-          span {{ item.name }}
-          v-img(:src="item.src" width="48px" rounded)
-          div {{ JSON.stringify(item.titles) }}
+  v-dialog(
+    v-model="displayDialogInfo"
+    transition="dialog-top-transition"
+    width="auto"
+  )
+    v-card(:title="$t('description')")
+      v-card-text
+        .text-pre-wrap(v-html="$t('games.crocodile.description')")
+      v-card-actions
+        v-spacer
+        v-btn(:text="$t('close')" @click="displayDialogInfo = false")
 </template>
 
 <script setup>
@@ -54,6 +55,7 @@ const config = ref(null)
 const currentItem = ref(null)
 const items = ref([])
 const elCardsStack = ref(null)
+const displayDialogInfo = ref(false)
 let counter = 0
 
 fetch(`${path}/config.json`).then(async response => {
