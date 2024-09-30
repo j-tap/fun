@@ -4,6 +4,14 @@
   "related": ["Pictionary", "Taboo", "Heads Up!"],
   "items": [
     {
+      "name": "bear",
+      "titles": {
+        "en": "Bear",
+        "es": "Oso",
+        "ru": "Медведь"
+      }
+    },
+    {
       "name": "cat",
       "titles": {
         "en": "Cat",
@@ -52,6 +60,14 @@
       }
     },
     {
+      "name": "fox",
+      "titles": {
+        "en": "Fox",
+        "es": "Zorro",
+        "ru": "Лиса"
+      }
+    },
+    {
       "name": "frog",
       "titles": {
         "en": "Frog",
@@ -92,6 +108,30 @@
       }
     },
     {
+      "name": "koala",
+      "titles": {
+        "en": "Koala",
+        "es": "Koala",
+        "ru": "Коала"
+      }
+    },
+    {
+      "name": "mouse",
+      "titles": {
+        "en": "Mouse",
+        "es": "Ratón",
+        "ru": "Мышь"
+      }
+    },
+    {
+      "name": "octopus",
+      "titles": {
+        "en": "Octopus",
+        "es": "Pulpo",
+        "ru": "Осьминог"
+      }
+    },
+    {
       "name": "panda",
       "titles": {
         "en": "Panda",
@@ -116,6 +156,22 @@
       }
     },
     {
+      "name": "raccoon",
+      "titles": {
+        "en": "Raccoon",
+        "es": "Mapache",
+        "ru": "Енот"
+      }
+    },
+    {
+      "name": "shark",
+      "titles": {
+        "en": "Shark",
+        "es": "Tiburón",
+        "ru": "Акула"
+      }
+    },
+    {
       "name": "sheep",
       "titles": {
         "en": "Sheep",
@@ -132,6 +188,22 @@
       }
     },
     {
+      "name": "stork",
+      "titles": {
+        "en": "Stork",
+        "es": "Cigüeña",
+        "ru": "Аист"
+      }
+    },
+    {
+      "name": "tiger",
+      "titles": {
+        "en": "Tiger",
+        "es": "Tigre",
+        "ru": "Тигр"
+      }
+    },
+    {
       "name": "turkey",
       "titles": {
         "en": "Turkey",
@@ -145,6 +217,14 @@
         "en": "Turtle",
         "es": "Tortuga",
         "ru": "Черепаха"
+      }
+    },
+    {
+      "name": "wolf",
+      "titles": {
+        "en": "Wolf",
+        "es": "Lobo",
+        "ru": "Волк"
       }
     }
   ]
