@@ -17,42 +17,34 @@
 </template>
 
 <script setup>
-// TODO: Refactoring
 import { ref, computed } from 'vue'
+import { delay } from '@/utils/common'
 
 const elStack = ref(null)
 const elCards = computed(() => elStack.value?.querySelectorAll('.card'))
 const isMainCardFlip = ref(true)
 
 async function openCard () {
-  const lastCard = elCards.value[elCards.value.length - 1];
+  const lastCard = elCards.value[elCards.value.length - 1]
 
   if (!isMainCardFlip.value) {
     isMainCardFlip.value = true
-    await delay(500);
+    await delay(500)
   }
 
   for (let i = 0; i < 3; i++) {
-    const animateCard = lastCard.cloneNode(true);
-    animateCard.classList.add('card_animate');
+    const animateCard = lastCard.cloneNode(true)
+    animateCard.classList.add('card_animate')
 
-    elStack.value.prepend(animateCard);
-    await delay(100);
+    elStack.value.prepend(animateCard)
+    await delay(100)
 
     setTimeout(() => {
-      animateCard.remove();
-    }, 1000);
+      animateCard.remove()
+    }, 1000)
   }
 
   isMainCardFlip.value = false
-}
-
-// function getRand (min, max) {
-//   return Math.random() * (max - min) + min;
-// }
-
-function delay (ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 defineExpose({

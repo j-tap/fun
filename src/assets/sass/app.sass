@@ -8,3 +8,51 @@
 .no-link
   text-decoration: none
   color: inherit
+
+.btn-microanim
+  &:before,
+  &:after
+    content: ''
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-left: -2px
+    margin-top: -2px
+    width: 6px
+    height: 6px
+    border-radius: 100%
+    transform: scale(0)
+    border: 1px solid transparent
+    box-shadow: -.8em 0 0 -2px, .8em 0 0 -2px, 0 -.8em 0 -2px, 0 .8em 0 -2px, -.6em -.6em 0 -2px, -.6em .6em 0 -2px, .6em -.6em 0 -2px, .6em .6em 0 -2px
+
+  $buttonColors: primary, secondary, success, error, info, warning
+  @each $color in $buttonColors
+    &.bg-#{$color}
+      &:before,
+      &:after
+        color: rgb(var(--v-theme-#{$color}))
+
+  &_animation
+    &:before
+      animation: effect-01-animation .8s cubic-bezier(0.175, 0.885, 0.320, 1.275)
+
+    &:after
+      animation: effect-02-animation .6s cubic-bezier(0.175, 0.885, 0.320, 1.275)
+
+  @keyframes effect-01-animation
+    from
+      transform: rotate(-15deg) scale(0)
+    40%
+      opacity: 1
+    to
+      transform: rotate(-30deg) scale(3)
+      opacity: 0
+
+  @keyframes effect-02-animation
+    from
+      transform: rotate(10deg) scale(0)
+    40%
+      opacity: 1
+    to
+      transform: rotate(30deg) scale(2)
+      opacity: 0

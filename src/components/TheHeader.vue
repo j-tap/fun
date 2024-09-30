@@ -9,7 +9,7 @@ v-app-bar(
     v-app-bar-nav-icon(variant="text" @click.stop="drawer = !drawer")
   v-toolbar-title
     router-link.d-flex.align-center.text-primary.no-link(to="/")
-      v-icon.mr-2(size="sm") mdi-emoticon
+      v-icon.mr-2(size="sm") mdi-emoticon-outline
       span.text-button.font-weight-black FUN
 
   v-spacer
@@ -30,6 +30,7 @@ v-app-bar(
 v-navigation-drawer(
   v-model="drawer"
   location="right"
+  temporary
 )
   v-list
     v-list-subheader {{ $t('games') }}
