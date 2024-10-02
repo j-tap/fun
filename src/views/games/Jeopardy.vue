@@ -76,6 +76,11 @@ v-container(fluid)
                 )
       template(v-slot:actions)
         v-btn(
+          :text="$t('reset')"
+          @click="resetQuestions"
+        )
+        v-spacer
+        v-btn(
           :text="$t('close')"
           variant="text"
           @click="displayDialogCategories = false"
@@ -238,6 +243,10 @@ function addPlayer () {
     displayDialogAddPlayer.value = false
     formPlayer.value = { ...formPlayerModel }
   }
+}
+
+function resetQuestions () {
+  gameJeopardyStore.clearQuestionsUnavailable()
 }
 </script>
 
