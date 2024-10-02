@@ -10,7 +10,7 @@ v-container(fluid)
     template(v-slot:append)
       v-btn(
         color="info"
-        variant="tonal"
+        variant="text"
         icon="mdi-information-slab-box"
         @click="displayDialogInfo = true"
       )
