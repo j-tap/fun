@@ -4,11 +4,27 @@
   "related": ["Pictionary", "Taboo", "Heads Up!"],
   "items": [
     {
+      "name": "bat",
+      "titles": {
+        "en": "Bat",
+        "es": "Murciélago",
+        "ru": "Летучая мышь"
+      }
+    },
+    {
       "name": "bear",
       "titles": {
         "en": "Bear",
         "es": "Oso",
         "ru": "Медведь"
+      }
+    },
+    {
+      "name": "boar",
+      "titles": {
+        "en": "Boar",
+        "es": "Jabalí",
+        "ru": "Кабан"
       }
     },
     {
@@ -57,6 +73,14 @@
         "en": "Duck",
         "es": "Pato",
         "ru": "Утка"
+      }
+    },
+    {
+      "name": "eagle",
+      "titles": {
+        "en": "Eagle",
+        "es": "Águila",
+        "ru": "Орёл"
       }
     },
     {
@@ -116,6 +140,22 @@
       }
     },
     {
+      "name": "lion",
+      "titles": {
+        "en": "Lion",
+        "es": "León",
+        "ru": "Лев"
+      }
+    },
+    {
+      "name": "monkey",
+      "titles": {
+        "en": "Monkey",
+        "es": "Mono",
+        "ru": "Обезьяна"
+      }
+    },
+    {
       "name": "mouse",
       "titles": {
         "en": "Mouse",
@@ -132,11 +172,27 @@
       }
     },
     {
+      "name": "owl",
+      "titles": {
+        "en": "Owl",
+        "es": "Búho",
+        "ru": "Сова"
+      }
+    },
+    {
       "name": "panda",
       "titles": {
         "en": "Panda",
         "es": "Panda",
         "ru": "Панда"
+      }
+    },
+    {
+      "name": "penguin",
+      "titles": {
+        "en": "Penguin",
+        "es": "Pingüino",
+        "ru": "Пингвин"
       }
     },
     {
@@ -161,6 +217,14 @@
         "en": "Raccoon",
         "es": "Mapache",
         "ru": "Енот"
+      }
+    },
+    {
+      "name": "sea-horse",
+      "titles": {
+        "en": "Sea Horse",
+        "es": "Caballito de mar",
+        "ru": "Морской конёк"
       }
     },
     {
@@ -217,6 +281,14 @@
         "en": "Turtle",
         "es": "Tortuga",
         "ru": "Черепаха"
+      }
+    },
+    {
+      "name": "unicorn",
+      "titles": {
+        "en": "Unicorn",
+        "es": "Unicornio",
+        "ru": "Единорог"
       }
     },
     {
