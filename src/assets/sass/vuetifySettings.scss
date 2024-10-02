@@ -1,3 +1,5 @@
 @forward 'vuetify/settings' with (
-  $body-font-family: 'Nunito',
+  $body-font-family: 'Nunito' !default,
+  $overlay-opacity: var(--v-overlay-opacity, .6) !default,
+  $overlay-scrim-background: rgb(var(--v-theme-background)) !default,
 );

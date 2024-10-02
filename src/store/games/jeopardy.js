@@ -1,27 +1,25 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
 
 const id = 'gameJeopardy'
 
 export const useGameJeopardyStore = defineStore(id, () => {
-  const { locale:localeI18n } = useI18n()
+  const players = useStorage(`${id}.players`, [])
 
-  const theme = useStorage(`${id}.theme`, 'dark')
-  const drawer = useStorage(`${id}.drawer`, false)
-  const locale = useStorage(`${id}.locale`, localeI18n.value)
-
-  const setTheme = (value) => {
-    theme.value = value
-  }
-  const setDrawer = (value) => {
-    drawer.value = value
+  const addPlayer = (value = {}) => {
+    console.log('addPlayer', value)
+    players.value.push(value)
   }
 
-  const setLocale = (value) => {
-    localeI18n.value = value
-    locale.value = value
+  const setPlayers = (value = []) => {
+    players.value = value
   }
 
-  return { locale, theme, drawer, setTheme, setDrawer, setLocale }
+  const removePlayer = (index = -1) => {
+    if (index >= 0) {
+      players.value.splice(index, 1)
+    }
+  }
+
+  return { players, addPlayer, setPlayers, removePlayer }
 })

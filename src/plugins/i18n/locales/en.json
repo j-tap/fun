@@ -1,9 +1,13 @@
 {
   "games": "Games",
   "players": "Players",
+  "player_name": "Player name",
+  "add_player": "Add new player",
+  "points": "Points",
   "new_task": "New task",
   "description": "Description",
   "close": "Close",
+  "save": "Save",
 
   "home.title": "Home",
 

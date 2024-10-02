@@ -1,9 +1,13 @@
 {
   "games": "Juegos",
   "players": "Jugadores",
+  "player_name": "Nombre del jugador",
+  "add_player": "Agregar nuevo jugador",
+  "points": "Puntos",
   "new_task": "Nueva tarea",
   "description": "Descripción",
   "close": "Cerrar",
+  "save": "Guardar",
 
   "home.title": "Inicio",
 

@@ -1,9 +1,13 @@
 {
   "games": "Игры",
   "players": "Игроки",
+  "player_name": "Имя игрока",
+  "add_player": "Добавить нового игрока",
+  "points": "Очки",
   "new_task": "Новое задание",
   "description": "Описание",
   "close": "Закрыть",
+  "save": "Сохранить",
 
   "home.title": "Главная",
 
