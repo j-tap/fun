@@ -4,6 +4,7 @@
   "player_name": "Nombre del jugador",
   "add_player": "Agregar nuevo jugador",
   "points": "Puntos",
+  "start": "Comenzar",
   "new_task": "Nueva tarea",
   "description": "Descripción",
   "close": "Cerrar",
@@ -15,5 +16,6 @@
   "games.crocodile.description": "Juego de adivinanzas de palabras.\nPuedes jugar en equipos o individualmente. Cada equipo o jugador intenta adivinar la palabra o frase por turnos.\nA la persona que muestra no se le permite hablar, solo hacer gestos, mostrar, representar.\nEl equipo o jugador que adivine correctamente la palabra o frase obtiene un punto y toma el lugar del explicador.\nEl equipo o jugador que obtenga la mayor cantidad de puntos al final del juego gana",
 
   "games.jeopardy.title": "Jeopardy",
-  "games.jeopardy.description": "Juego del conocimiento.\nLos jugadores responden preguntas del cuestionario.\nLas preguntas se dividen en categorías y tienen diferentes costos.\nLos jugadores eligen preguntas y las responden.\nLa respuesta correcta aporta puntos, la respuesta incorrecta quita puntos.\nGana el jugador que tenga más puntos al final del juego."
+  "games.jeopardy.description": "Juego del conocimiento.\nLos jugadores responden preguntas del cuestionario.\nLas preguntas se dividen en categorías y tienen diferentes costos.\nLos jugadores eligen preguntas y las responden.\nLa respuesta correcta aporta puntos, la respuesta incorrecta quita puntos.\nGana el jugador que tenga más puntos al final del juego.",
+  "games.jeopardy.categories_questions": "Categorías de preguntas"
 }

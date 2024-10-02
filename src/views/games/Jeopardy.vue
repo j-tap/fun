@@ -14,20 +14,13 @@ v-container(fluid)
         icon="mdi-information-slab-box"
         @click="displayDialogInfo = true"
       )
-    v-card-text
-      // Сетка категорий
-      v-row
-        v-col(cols="2" v-for="category in categories" :key="category.id")
-          v-card(class="text-center" outlined @click="selectCategory(category)")
-            v-card-title.text-center {{ category.title }}
-
-      // Сетка вопросов
-      v-row
-        v-col(cols="2" v-for="(question, index) in category?.questions" :key="index")
-          v-card(class="text-center" outlined)
-            v-card-title {{ question.points }} points
-            v-card-actions
-              v-btn(color="primary" @click="selectQuestion(category, question)") Select Question
+    v-card-text.text-center
+      v-btn(
+        :text="$t('start')"
+        color="primary"
+        size="large"
+        @click="displayDialogCategories = true"
+      )
 
     v-card(:title="$t('players')")
       template(v-slot:append)
@@ -40,29 +33,81 @@ v-container(fluid)
         )
       v-card-text
         v-row
-          v-col(v-for="(player, index) in players" :key="index" cols="12" sm="6" md="4" lg="3" xl="2")
-            v-hover
-              template(v-slot:default="{ isHovering, props }")
-                v-card(
-                  v-bind="props"
-                  :title="player.name"
+          v-col(
+            v-for="(player, index) in players"
+            :key="index"
+            cols="12" sm="6" md="4" lg="3" xl="2"
+          )
+            GamesJeopardyPlayer(:value="player" manage)
+
+  v-dialog(
+    v-model="displayDialogCategories"
+    fullscreen
+    persistent
+  )
+    v-card
+      v-card-title.text-h4.text-medium-emphasis.text-center.flex-grow-1.pl-6
+        |{{ $t('games.jeopardy.categories_questions') }}
+      v-card-text
+        table.mx-auto
+          thead
+            tr
+              th.pa-4.text-center(
+                v-for="(title, ind) in categoriesTitles"
+                :key="ind"
+              )
+                .text-h6.text-blue {{ title }}
+          tbody
+            tr(
+              v-for="(group, ind) in categoriesRows"
+              :key="ind"
+            )
+              td.pa-4.text-center(
+                v-for="question in group"
+                :key="question.id"
+              )
+                v-btn(
+                  :text="`${question.points}`"
+                  :disabled="question.unavailable"
                   color="info"
                   variant="outlined"
+                  size="x-large"
+                  @click="selectQuestion(question)"
                 )
-                  template(v-slot:prepend)
-                    v-icon(:color="player.color" size="x-large" ) mdi-account
-                  template(v-slot:subtitle)
-                    span {{ $t('points') }}:
-                    b {{ player.points }}
-                  template(v-slot:append)
-                    v-fade-transition
-                      v-btn(
-                        v-show="isHovering"
-                        icon="mdi-delete-forever-outline"
-                        color="error"
-                        variant="text"
-                        @click="gameJeopardyStore.removePlayer(index)"
-                      )
+      template(v-slot:actions)
+        v-btn(
+          :text="$t('close')"
+          variant="text"
+          @click="displayDialogCategories = false"
+        )
+
+  v-dialog(
+    v-model="displayDialogQuestion"
+    fullscreen
+    persistent
+  )
+    v-card
+      v-card-title
+        .text-h4.text-medium-emphasis.text-center
+          |{{ currentQuestion.categoryTitle }} {{ currentQuestion.points }}
+      v-card-text.text-center
+        .text-h6.mt-6.mb-12 {{ currentQuestion.title }}
+        GamesJeopardyPlayer.d-inline-block(:value="currentPlayer")
+
+      template(v-slot:actions)
+        v-btn(
+          icon="mdi-thumb-down"
+          color="error"
+          size="x-large"
+          @click.stop="updatePointsToPlayer(false)"
+        )
+        v-spacer
+        v-btn(
+          icon="mdi-thumb-up"
+          color="success"
+          size="x-large"
+          @click.stop="updatePointsToPlayer(true)"
+        )
 
   v-dialog(
     v-model="displayDialogInfo"
@@ -103,6 +148,7 @@ v-container(fluid)
             variant="outlined"
             hide-details
             required
+            autofocus
           )
       v-card-actions
         v-spacer
@@ -114,35 +160,65 @@ v-container(fluid)
 </template>
 
 <script setup>
+import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
 import { computed, ref } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy'
 
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'
 const maxPlayers = 5
-const formPlayerModel = { name: null, points: 0, color: null }
+const formPlayerModel = { id: 0, name: null, points: 0, color: null }
 const colors = ['red', 'green', 'blue', 'purple', 'orange', 'pink', 'cyan', 'indigo', 'amber-deep']
+const displayDialogCategories = ref(false)
+const displayDialogQuestion = ref(false)
 const displayDialogInfo = ref(false)
 const displayDialogAddPlayer = ref(false)
 const config = ref(null)
 const categories = ref([])
+const categoriesTitles = computed(() => categories.value.map(o => o.title))
+const categoriesRows = computed(() => {
+  return categories.value.reduce((grouped, category) => {
+    category.questions.forEach(question => {
+      const index = (question.points / 100) - 1
+
+      grouped[index] = grouped[index] || []
+      grouped[index].push({
+        ...question,
+        categoryId: category.id,
+        categoryTitle: category.title,
+        unavailable: gameJeopardyStore.questionsUnavailable.includes(question.id)
+      })
+    })
+    return grouped
+  }, [])
+})
 const formPlayer = ref({ ...formPlayerModel })
 const players = computed(() => gameJeopardyStore.players)
 const canAddPlayer = computed(() => players.value.length < maxPlayers)
-const category = ref(null)
+const currentQuestion = ref(null)
+const currentPlayer = ref(null)
 
 fetch(`${path}/config.json`).then(async response => {
   config.value = await response.json()
   categories.value = config.value?.items
 })
 
+function selectQuestion (question) {
+  currentQuestion.value = { ...question }
+  gameJeopardyStore.addQuestionsUnavailable(question.id)
+  // TEMP FOR TEST
+  currentPlayer.value = players.value[Math.floor(Math.random() * players.value.length)]
 
-function selectCategory (value) {
-  category.value = value
+  displayDialogQuestion.value = true
 }
 
-function selectQuestion (category, question) {
-  console.log(`Selected question from ${category.name}: ${question.points} points`)
+function updatePointsToPlayer (plus = false) {
+  let { points } = currentQuestion.value
+  if (!plus) {
+    points *= -1
+  }
+  gameJeopardyStore.addPointsToPlayer(currentPlayer.value, points)
+  displayDialogQuestion.value = false
 }
 
 function addPlayer () {
@@ -153,9 +229,10 @@ function addPlayer () {
   ) {
     const form = { ...formPlayer.value }
     const availableColors = colors.filter(color => players.value.findIndex(o => o.color === color) === -1)
+    const name = form.name.trim()
 
-    form.name = form.name.trim()
-    form.name = form.name.charAt(0).toUpperCase() + form.name.slice(1)
+    form.id = players.value.length + 1
+    form.name = name.charAt(0).toUpperCase() + name.slice(1)
     form.color = availableColors[Math.floor(Math.random() * availableColors.length)]
     gameJeopardyStore.addPlayer(form)
     displayDialogAddPlayer.value = false
