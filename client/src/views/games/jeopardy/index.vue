@@ -38,7 +38,12 @@ v-container(fluid)
             :key="index"
             cols="12" sm="6" md="4" lg="3" xl="2"
           )
-            GamesJeopardyPlayer(:value="player" manage)
+            GamesJeopardyPlayer(
+              :value="player"
+              manage
+              @remove="gameJeopardyStore.removePlayer(player)"
+              @copy=""
+            )
 
   v-dialog(
     v-model="displayDialogCategories"
@@ -182,12 +187,13 @@ v-container(fluid)
 <script setup>
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
 import { computed, ref } from 'vue'
-import { useGameJeopardyStore } from '@/store/games/jeopardy'
+import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
+import { genToken } from '@/utils/common.js'
 
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'
 const maxPlayers = 5
-const formPlayerModel = { id: 0, name: null, points: 0, color: null }
+const formPlayerModel = { id: 0, token: null, name: null, points: 0, color: null }
 const colors = ['red', 'green', 'blue', 'purple', 'orange', 'pink', 'cyan', 'indigo', 'amber-deep']
 const displayDialogCategories = ref(false)
 const displayDialogQuestion = ref(false)
@@ -253,6 +259,7 @@ function addPlayer () {
     const name = form.name.trim()
 
     form.id = players.value.length + 1
+    form.token = genToken()
     form.name = name.charAt(0).toUpperCase() + name.slice(1)
     form.color = availableColors[Math.floor(Math.random() * availableColors.length)]
     gameJeopardyStore.addPlayer(form)

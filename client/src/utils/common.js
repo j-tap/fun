@@ -5,3 +5,7 @@ export function delay (ms) {
 export function getRand (min, max) {
   return Math.random() * (max - min) + min;
 }
+
+export function genToken () {
+  return Math.random().toString(36).substr(2) + Date.now().toString(36)
+}
