@@ -49,20 +49,20 @@ v-container(fluid)
       v-card-title.text-h4.text-medium-emphasis.text-center.flex-grow-1.pl-6
         |{{ $t('games.jeopardy.categories_questions') }}
       v-card-text
-        table.mx-auto
+        table.table-categories
           thead
             tr
-              th.pa-4.text-center(
+              th.text-center.text-blue(
                 v-for="(title, ind) in categoriesTitles"
                 :key="ind"
               )
-                .text-h6.text-blue {{ title }}
+                |{{ title }}
           tbody
             tr(
               v-for="(group, ind) in categoriesRows"
               :key="ind"
             )
-              td.pa-4.text-center(
+              td.text-center(
                 v-for="question in group"
                 :key="question.id"
               )
@@ -71,7 +71,6 @@ v-container(fluid)
                   :disabled="question.unavailable"
                   color="info"
                   variant="outlined"
-                  size="x-large"
                   @click="selectQuestion(question)"
                 )
       template(v-slot:actions)
@@ -95,9 +94,25 @@ v-container(fluid)
       v-card-title
         .text-h4.text-medium-emphasis.text-center
           |{{ currentQuestion.categoryTitle }} {{ currentQuestion.points }}
-      v-card-text.text-center
-        .text-h6.mt-6.mb-12 {{ currentQuestion.title }}
-        GamesJeopardyPlayer.d-inline-block(:value="currentPlayer")
+      v-card-text.text-center.mt-6.mb-12
+        .text-h6.mb-6 {{ currentQuestion.title }}
+        v-row
+          v-col(cols="12" md="6" offset-md="3" )
+            v-alert(
+              v-if="displayAnswer"
+              :text="currentQuestion.answer"
+              :icon="false"
+              type="success"
+              density="compact"
+            )
+            v-btn(
+              v-else
+              :text="$t('games.jeopardy.answer')"
+              color="info"
+              @click="displayAnswer = true"
+            )
+
+        GamesJeopardyPlayer.d-inline-block.mt-8(:value="currentPlayer")
 
       template(v-slot:actions)
         v-btn(
@@ -178,6 +193,7 @@ const displayDialogCategories = ref(false)
 const displayDialogQuestion = ref(false)
 const displayDialogInfo = ref(false)
 const displayDialogAddPlayer = ref(false)
+const displayAnswer = ref(false)
 const config = ref(null)
 const categories = ref([])
 const categoriesTitles = computed(() => categories.value.map(o => o.title))
@@ -251,5 +267,24 @@ function resetQuestions () {
 </script>
 
 <style lang="sass" scoped>
+.table-categories
+  margin-left: auto
+  margin-right: auto
+
+  td, th
+    padding: 1vw
+    text-align: center
+    width: clamp(50px, 10vw, 10rem)
+    height: clamp(35px, 7vw, 7rem)
+
+    .v-btn
+      width: 100%
+      min-height: 100%
+      padding: 0
+
+  th
+    font-weight: 600
+    letter-spacing: -.5px
+    font-size: clamp(12px, 1.5vw, 1.5rem)
 
 </style>

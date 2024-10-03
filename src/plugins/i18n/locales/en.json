@@ -18,5 +18,6 @@
 
   "games.jeopardy.title": "Jeopardy",
   "games.jeopardy.description": "A game of knowledge.\nPlayers answer quiz questions.\nQuestions are divided into categories and have different values.\nPlayers select questions and answer them.\nThe correct answer brings points, the wrong one takes them away.\nThe player with the most points at the end of the game wins.",
-  "games.jeopardy.categories_questions": "Categories of questions"
+  "games.jeopardy.categories_questions": "Categories of questions",
+  "games.jeopardy.answer": "Answer"
 }
