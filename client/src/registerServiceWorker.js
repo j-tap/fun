@@ -14,8 +14,18 @@ if (import.meta.env.VITE_APP_NODE_ENV !== 'dev') {
     updatefound () {
       console.info('ServiceWorker: New content is downloading.')
     },
-    updated () {
+    updated (registration) {
       alert('New content is available, please refresh to load the latest version.')
+
+      if (registration.waiting) {
+        if (navigator.onLine) {
+          registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+          window.location.reload()
+        }
+        else {
+          alert('New content is available but you are offline. Please refresh the page when you are online.');
+        }
+      }
     },
     offline () {
       console.info('ServiceWorker: App is running in offline mode.')
