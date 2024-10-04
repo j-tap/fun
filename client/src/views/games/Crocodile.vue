@@ -46,15 +46,16 @@ v-container(fluid)
     transition="dialog-top-transition"
     width="auto"
   )
-    v-card(:title="$t('description')")
-      v-card-text
-        .text-pre-wrap(v-html="$t('games.crocodile.description')")
-      v-card-actions
-        v-spacer
+    v-card
+      v-card-title.d-flex.justify-space-between.align-center
+        .text-h5.text-medium-emphasis.ps-2 {{ $t('description') }}
         v-btn(
-          :text="$t('close')"
+          icon="mdi-close"
+          variant="text"
           @click="displayDialogInfo = false"
         )
+      v-card-text
+        .text-pre-wrap(v-html="$t('games.crocodile.description')")
 </template>
 
 <script setup>

@@ -33,22 +33,26 @@ v-navigation-drawer(
   temporary
 )
   v-list
-    v-list-subheader {{ $t('games') }}
-    v-list-item(
-      v-for="([icon, title, to], index) in items"
-      :key="index"
-      :to="to"
-    )
-      template(v-slot:prepend)
-        v-icon(:icon="icon")
-      v-list-item-title {{ $t(title) }}
+    v-list-subheader.text-uppercase.text-grey
+      v-icon.me-2(size="x-small" icon="mdi-gamepad-variant-outline")
+      | {{ $t('games') }}
+    v-divider
+    DrawerMenuItems(:items="menuGames")
+    v-divider
+    v-list-subheader.text-uppercase.text-grey
+      v-icon.me-2(size="x-small" icon="mdi-school-outline")
+      | {{ $t('learning') }}
+    v-divider
+    DrawerMenuItems(:items="menuLearning")
 </template>
 
 <script setup>
+import DrawerMenuItems from './DrawerMenuItems.vue'
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
-import { useCommonStore } from '@/store/common'
-import menuGames from '@/config/menuGames'
+import { useCommonStore } from '@/store/common.js'
+import menuGames from '@/config/menuGames.js'
+import menuLearning from '@/config/menuLearning.js'
 
 const { availableLocales, locale } = useI18n()
 const commonStore = useCommonStore()
@@ -68,8 +72,6 @@ const drawer = computed({
     commonStore.setDrawer(val)
   },
 })
-
-const items = computed(() => menuGames)
 
 locale.value = localeCurrent.value
 

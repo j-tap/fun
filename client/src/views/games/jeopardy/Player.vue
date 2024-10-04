@@ -1,22 +1,30 @@
 <template lang="pug">
-v-container(fluid)
-  v-card(
-    :title="$t('games.jeopardy.title')"
-    variant="elevated"
-  )
-    template(v-slot:prepend)
-      v-icon(color="blue" icon="mdi-school-outline")
-    template(v-slot:append)
-      v-btn(
-        color="info"
-        variant="text"
-        icon="mdi-information-slab-box"
-        @click="displayDialogInfo = true"
-      )
+LayoutGameJeopardy
+  v-card
+    v-card-text TEST
 </template>
 
 <script setup>
+import LayoutGameJeopardy from '@/components/layouts/games/Jeopardy.vue'
+import { inject } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+const socket = new WebSocket(inject('wsUrl'))
+const { token } = route.query
+const dataJson = JSON.stringify({
+  game: 'jeopardy',
+  token,
+})
+
+socket.addEventListener('open', () => {
+  console.info('Соединение установлено')
+  socket.send(dataJson)
+})
+
+socket.addEventListener('message', (event) => {
+  console.log('Сообщение от сервера: ', event.data)
+})
 </script>
 
 <style lang="sass" scoped>

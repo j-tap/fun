@@ -1,5 +1,6 @@
 {
   "games": "Игры",
+  "learning": "Обучение",
   "players": "Игроки",
   "player_name": "Имя игрока",
   "add_player": "Добавить нового игрока",
@@ -8,8 +9,10 @@
   "reset": "Сбросить",
   "new_task": "Новое задание",
   "description": "Описание",
+  "settings": "Настройки",
   "close": "Закрыть",
   "save": "Сохранить",
+  "ok": "ОК",
   "copied": "Скопировано",
 
   "home.title": "Главная",
@@ -20,5 +23,11 @@
   "games.jeopardy.title": "Викторина",
   "games.jeopardy.description": "Игра на знание.\nИгроки отвечают на вопросы викторины.\nВопросы разбиты на категории и имеют различные стоимости.\nИгроки выбирают вопросы и отвечают на них.\nПравильный ответ приносит очки, неправильный - отнимает.\nПобеждает игрок, набравший наибольшее количество очков в конце игры",
   "games.jeopardy.categories_questions": "Категории вопросов",
-  "games.jeopardy.answer": "Ответ"
+  "games.jeopardy.answer": "Ответ",
+
+  "learning.read-rus.title": "Чтение на русском",
+  "learning.read-rus.alphabet": "Алфавит",
+  "learning.read-rus.reading_by_syllables": "Чтение по слогам",
+  "learning.read-rus.settings.shuffle": "Перемешать",
+  "learning.read-rus.settings.to_voice": "Озвучивать"
 }

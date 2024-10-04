@@ -5,6 +5,7 @@ v-hover
       v-bind="props"
       :class="$attrs.class"
       :title="value.name"
+      :to="link"
       color="info"
       variant="outlined"
     )
@@ -17,13 +18,13 @@ v-hover
 
       template(v-if="manage" v-slot:append)
         v-fade-transition
-          .d-flex(v-show="isHovering")
+          .d-flex(v-if="isHovering")
             v-btn(
               icon="mdi-delete-forever-outline"
               color="error"
               variant="text"
               size="small"
-              @click="emit('remove', value)"
+              @click.stop.prevent="emit('remove', value)"
             )
             v-tooltip(
               v-model="showTooltip"
@@ -38,15 +39,17 @@ v-hover
                   color="info"
                   variant="text"
                   size="small"
-                  @click="copyToken"
+                  @click.stop.prevent="copyLink"
                 )
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useClipboard } from '@vueuse/core'
 
 const { copy, copied } = useClipboard()
+const router = useRouter()
 const showTooltip = ref(false)
 
 const props = defineProps({
@@ -54,15 +57,19 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  link: {
+    type: Object,
+    default: undefined,
+  },
   manage: {
     type: Boolean,
     default: false,
   },
 })
-
 const emit = defineEmits(['remove'])
+// const link = computed(() => router.)
 
-function copyToken () {
+function copyLink () {
   copy(props.value.token)
   if (copied) {
     showTooltip.value = true

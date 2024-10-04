@@ -15,4 +15,6 @@ app.use(router)
 app.use(vuetify)
 app.use(btnMicroanim)
 
+app.provide('wsUrl', `ws://${import.meta.env.VITE_APP_SERVER_URL}`)
+
 app.mount('#app')

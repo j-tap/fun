@@ -1,5 +1,6 @@
 {
   "games": "Juegos",
+  "learning": "Aprendizaje",
   "players": "Jugadores",
   "player_name": "Nombre del jugador",
   "add_player": "Agregar nuevo jugador",
@@ -8,8 +9,10 @@
   "reset": "Reiniciar",
   "new_task": "Nueva tarea",
   "description": "Descripción",
+  "settings": "Ajustes",
   "close": "Cerrar",
   "save": "Guardar",
+  "ok": "OK",
   "copied": "Copiado",
 
   "home.title": "Inicio",
@@ -20,5 +23,11 @@
   "games.jeopardy.title": "Jeopardy",
   "games.jeopardy.description": "Juego del conocimiento.\nLos jugadores responden preguntas del cuestionario.\nLas preguntas se dividen en categorías y tienen diferentes costos.\nLos jugadores eligen preguntas y las responden.\nLa respuesta correcta aporta puntos, la respuesta incorrecta quita puntos.\nGana el jugador que tenga más puntos al final del juego.",
   "games.jeopardy.categories_questions": "Categorías de preguntas",
-  "games.jeopardy.answer": "Respuesta"
+  "games.jeopardy.answer": "Respuesta",
+
+  "learning.read-rus.title": "Leyendo en ruso",
+  "learning.read-rus.alphabet": "Alfabeto",
+  "learning.read-rus.reading_by_syllables": "Lectura por sílabas",
+  "learning.read-rus.settings.shuffle": "Barajar",
+  "learning.read-rus.settings.to_voice": "A la voz"
 }

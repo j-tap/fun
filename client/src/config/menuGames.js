@@ -1,4 +1,4 @@
 export default [
-  ['custom:crocodile', 'games.crocodile.title', '/games/crocodile'],
-  ['mdi-school-outline', 'games.jeopardy.title', '/games/jeopardy'],
+  ['custom:crocodile', 'games.crocodile.title', '/games/crocodile', false],
+  ['mdi-head-question-outline', 'games.jeopardy.title', '/games/jeopardy', true],
 ]

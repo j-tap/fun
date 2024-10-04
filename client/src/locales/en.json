@@ -1,5 +1,6 @@
 {
   "games": "Games",
+  "learning": "Learning",
   "players": "Players",
   "player_name": "Player name",
   "add_player": "Add new player",
@@ -8,8 +9,10 @@
   "reset": "Reset",
   "new_task": "New task",
   "description": "Description",
+  "settings": "Settings",
   "close": "Close",
   "save": "Save",
+  "ok": "OK",
   "copied": "Copied",
 
   "home.title": "Home",
@@ -20,5 +23,11 @@
   "games.jeopardy.title": "Jeopardy",
   "games.jeopardy.description": "A game of knowledge.\nPlayers answer quiz questions.\nQuestions are divided into categories and have different values.\nPlayers select questions and answer them.\nThe correct answer brings points, the wrong one takes them away.\nThe player with the most points at the end of the game wins.",
   "games.jeopardy.categories_questions": "Categories of questions",
-  "games.jeopardy.answer": "Answer"
+  "games.jeopardy.answer": "Answer",
+
+  "learning.read-rus.title": "Reading in Russian",
+  "learning.read-rus.alphabet": "Alphabet",
+  "learning.read-rus.reading_by_syllables": "Reading by syllables",
+  "learning.read-rus.settings.shuffle": "Shuffle",
+  "learning.read-rus.settings.to_voice": "To voice"
 }
