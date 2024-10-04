@@ -13,7 +13,11 @@
   "close": "Close",
   "save": "Save",
   "ok": "OK",
+  "next": "Next",
   "copied": "Copied",
+
+  "settings.shuffle": "Shuffle",
+  "settings.to_voice": "To voice",
 
   "home.title": "Home",
 
@@ -25,9 +29,10 @@
   "games.jeopardy.categories_questions": "Categories of questions",
   "games.jeopardy.answer": "Answer",
 
-  "learning.read-rus.title": "Reading in Russian",
-  "learning.read-rus.alphabet": "Alphabet",
-  "learning.read-rus.reading_by_syllables": "Reading by syllables",
-  "learning.read-rus.settings.shuffle": "Shuffle",
-  "learning.read-rus.settings.to_voice": "To voice"
+  "learning.colors": "Colors",
+  "learning.read-ru.title": "Reading in Russian",
+  "learning.alphabet": "Alphabet",
+  "learning.reading_by_syllables": "Reading by syllables",
+
+  "learning.read-es.title": "Reading in Spanish"
 }

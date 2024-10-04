@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 
-const id = 'learningReadRus'
+const id = 'learningReadRu'
 const settingsDefault = {
   shuffle: true,
   to_voice: false,
 }
 
-export const useLearningReadRusStore = defineStore(id, () => {
+export const useLearningReadRuStore = defineStore(id, () => {
   const settings = useStorage(`${id}.settings`, { ...settingsDefault })
 
   const updateSettings = (value = { ...settingsDefault }) => {

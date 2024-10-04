@@ -13,7 +13,11 @@
   "close": "Закрыть",
   "save": "Сохранить",
   "ok": "ОК",
+  "next": "Далее",
   "copied": "Скопировано",
+
+  "settings.shuffle": "Перемешать",
+  "settings.to_voice": "Озвучивать",
 
   "home.title": "Главная",
 
@@ -25,9 +29,10 @@
   "games.jeopardy.categories_questions": "Категории вопросов",
   "games.jeopardy.answer": "Ответ",
 
-  "learning.read-rus.title": "Чтение на русском",
-  "learning.read-rus.alphabet": "Алфавит",
-  "learning.read-rus.reading_by_syllables": "Чтение по слогам",
-  "learning.read-rus.settings.shuffle": "Перемешать",
-  "learning.read-rus.settings.to_voice": "Озвучивать"
+  "learning.colors": "Цвета",
+  "learning.read-ru.title": "Чтение на русском",
+  "learning.alphabet": "Алфавит",
+  "learning.reading_by_syllables": "Чтение по слогам",
+
+  "learning.read-es.title": "Чтение на испанском"
 }

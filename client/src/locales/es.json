@@ -13,7 +13,11 @@
   "close": "Cerrar",
   "save": "Guardar",
   "ok": "OK",
+  "next": "Siguiente",
   "copied": "Copiado",
+
+  "settings.shuffle": "Barajar",
+  "settings.to_voice": "A la voz",
 
   "home.title": "Inicio",
 
@@ -25,9 +29,10 @@
   "games.jeopardy.categories_questions": "Categorías de preguntas",
   "games.jeopardy.answer": "Respuesta",
 
-  "learning.read-rus.title": "Leyendo en ruso",
-  "learning.read-rus.alphabet": "Alfabeto",
-  "learning.read-rus.reading_by_syllables": "Lectura por sílabas",
-  "learning.read-rus.settings.shuffle": "Barajar",
-  "learning.read-rus.settings.to_voice": "A la voz"
+  "learning.colors": "Colores",
+  "learning.read-ru.title": "Leyendo en ruso",
+  "learning.alphabet": "Alfabeto",
+  "learning.reading_by_syllables": "Lectura por sílabas",
+
+  "learning.read-es.title": "Leyendo en español"
 }

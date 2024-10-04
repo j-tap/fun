@@ -1,0 +1,129 @@
+{
+  "colors": [
+    {
+      "name": "red",
+      "hex": "#ff0000",
+      "titles": {
+        "en": "Red",
+        "ru": "Красный",
+        "es": "Rojo"
+      }
+    },
+    {
+      "name": "dark-red",
+      "hex": "#8b0000",
+      "titles": {
+        "en": "Dark red",
+        "ru": "Темно-красный",
+        "es": "Rojo oscuro"
+      }
+    },
+    {
+      "name": "pink",
+      "hex": "#ff69b4",
+      "titles": {
+        "en": "Pink",
+        "ru": "Розовый",
+        "es": "Rosa"
+      }
+    },
+    {
+      "name": "purple",
+      "hex": "#800080",
+      "titles": {
+        "en": "Purple",
+        "ru": "Пурпурный",
+        "es": "Púrpura"
+      }
+    },
+    {
+      "name": "blue",
+      "hex": "#0000ff",
+      "titles": {
+        "en": "Blue",
+        "ru": "Синий",
+        "es": "Azul"
+      }
+    },
+    {
+      "name": "light-blue",
+      "hex": "#add8e6",
+      "titles": {
+        "en": "Light blue",
+        "ru": "Голубой",
+        "es": "Azul claro"
+      }
+    },
+    {
+      "name": "yellow",
+      "hex": "#ffff00",
+      "titles": {
+        "en": "Yellow",
+        "ru": "Желтый",
+        "es": "Amarillo"
+      }
+    },
+    {
+      "name": "green",
+      "hex": "#008000",
+      "titles": {
+        "en": "Green",
+        "ru": "Зеленый",
+        "es": "Verde"
+      }
+    },
+    {
+      "name": "light-green",
+      "hex": "#90ee90",
+      "titles": {
+        "en": "Light green",
+        "ru": "Светло-зеленый",
+        "es": "Verde claro"
+      }
+    },
+    {
+      "name": "black",
+      "hex": "#000000",
+      "titles": {
+        "en": "Black",
+        "ru": "Черный"
+      }
+    },
+    {
+      "name": "white",
+      "hex": "#ffffff",
+      "titles": {
+        "en": "White",
+        "ru": "Белый",
+        "es": "Blanco"
+      }
+    },
+    {
+      "name": "orange",
+      "hex": "#ffa500",
+      "titles": {
+        "en": "Orange",
+        "ru": "Оранжевый",
+        "es": "Naranja"
+      }
+    },
+    {
+      "name": "brown",
+      "hex": "#a52a2a",
+      "titles": {
+        "en": "Brown",
+        "ru": "Коричневый",
+        "es": "Marrón"
+      }
+    },
+    {
+      "name": "gray",
+      "hex": "#808080",
+      "titles": {
+        "en": "Gray",
+        "ru": "Серый",
+        "es": "Gris"
+      }
+    }
+  ]
+}

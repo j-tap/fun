@@ -1,22 +1,20 @@
 <template lang="pug">
 section.alphabet
   v-card.mx-auto(
-    v-if="letterCard"
     :key="letterCard.key"
     max-width="340"
   )
     v-img.align-end(
       :src="letterCard.src"
       aspect-ratio="1"
-      gradient="to bottom, rgba(0,0,0,.4), rgba(0,0,0,.8)"
+      gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.8)"
       cover
     )
-      v-card-title.text-h1.font-weight-bold(
-        :class="`text-${letterCard.color}`"
-      )
-        span.text-uppercase {{ letterCard.letter }}
-        span.text-lowercase {{ letterCard.letter }}
-      v-card-actions
+      v-card-actions.align-end
+        .text-h1.font-weight-bold(:class="`text-${letterCard.color}`")
+          span.text-uppercase {{ letterCard.letter }}
+          span.text-lowercase {{ letterCard.letter }}
+        v-spacer
         v-btn(
           :icon="letterCard.isPlaying ? 'mdi-stop' : 'mdi-play'"
           color="green"
@@ -25,7 +23,7 @@ section.alphabet
         )
   .text-center.my-4
     v-btn(
-      text="next"
+      :text="$t('next')"
       color="orange"
       size="large"
       @click="getNewLetterCard"
@@ -35,11 +33,11 @@ section.alphabet
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
 import useArray from '@/composables/useArray.js'
-import { useLearningReadRusStore } from '@/store/learning/readRus.js'
+import { useLearningReadRuStore } from '@/store/learning/readRu.js'
 
 const { shuffleArray } = useArray()
-const learningReadRusStore = useLearningReadRusStore()
-const resourcesUrl = '/learning/read-rus'
+const learningReadRuStore = useLearningReadRuStore()
+const resourcesUrl = '/learning/read-ru'
 const audioUrl = `${resourcesUrl}/sounds/`
 const imgUrl = `${resourcesUrl}/images/`
 const vowels = 'аеёиоуыэюя'.split('')
@@ -47,7 +45,7 @@ const alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэ
 const alphabetList = ref([])
 const letterCard = ref({})
 const counter = ref(0)
-const settings = computed(() => learningReadRusStore.settings)
+const settings = computed(() => learningReadRuStore.settings)
 
 watch(settings, () => {
   counter.value = 0
@@ -74,7 +72,7 @@ function getNewLetterCard () {
   letterCard.value = {
     letter,
     color: vowels.includes(letter) ? 'red-lighten-2' : 'blue-lighten-2',
-    src: `${imgUrl}${letter}.webp`,
+    src: `${imgUrl}${letterToNumber(letter)}.webp`,
     key: `${counter.value}-${letter}`,
     isVowel: vowels.includes(letter),
     audio: new Audio(`${audioUrl}${letter}.aac`),
@@ -107,5 +105,9 @@ function togglePlay () {
     audio.currentTime = 0
     letterCard.value.isPlaying = false
   }
+}
+
+function letterToNumber(letter = '') {
+  return alphabet.findIndex(l => l === letter.toLowerCase()) + 1
 }
 </script>
