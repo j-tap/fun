@@ -1,44 +1,25 @@
 <template lang="pug">
-v-container(max-width="340")
-  v-card.mx-auto(
-    :key="letterCard.key"
-    v-touch="{ left: () => getPrevCard, right: () => getNextCard }"
-    @click="!settings.display_img ? letterCard.isDisplayImg = !letterCard.isDisplayImg : undefined"
+CardInfo(
+  :src="letterCard.isDisplayImg ? letterCard.src : ''"
+  :key="letterCard.key"
+  @prev="getPrevCard"
+  @next="getNextCard"
+  @click="!settings.display_img ? letterCard.isDisplayImg = !letterCard.isDisplayImg : undefined"
+)
+  .text-h1.font-weight-bold(:class="`text-${letterCard.color}`")
+    span.text-uppercase {{ letterCard.letter }}
+    span.text-lowercase {{ letterCard.letter }}
+  v-spacer
+  v-btn(
+    :icon="letterCard.isPlaying ? 'mdi-stop' : 'mdi-play'"
+    color="green"
+    variant="outlined"
+    @click.stop="togglePlay"
   )
-    v-img.align-end(
-      :src="letterCard.isDisplayImg ? letterCard.src : ''"
-      aspect-ratio="1"
-      gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.8)"
-      cover
-    )
-      v-card-actions.align-end
-        .text-h1.font-weight-bold(:class="`text-${letterCard.color}`")
-          span.text-uppercase {{ letterCard.letter }}
-          span.text-lowercase {{ letterCard.letter }}
-        v-spacer
-        v-btn(
-          :icon="letterCard.isPlaying ? 'mdi-stop' : 'mdi-play'"
-          color="green"
-          variant="outlined"
-          @click.stop="togglePlay"
-        )
-  .d-flex.flex-center.my-4
-    v-btn(
-      :text="$t('prev')"
-      color="orange"
-      size="large"
-      @click.stop="getPrevCard"
-    )
-    v-spacer
-    v-btn(
-      :text="$t('next')"
-      color="orange"
-      size="large"
-      @click.stop="getNextCard"
-    )
 </template>
 
 <script setup>
+import CardInfo from '@/components/CardInfo/index.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import useArray from '@/composables/useArray.js'
 import { useLearningReadRuStore } from '@/store/learning/readRu.js'
@@ -70,23 +51,25 @@ onMounted(() => {
 
 function printCard () {
   alphabetList.value = getAlphabet()
-  getNewLetterCard()
+  getCard()
 }
 
 function getNextCard () {
   counter.value++
-  getNewLetterCard()
+  getCard()
 }
 
 function getPrevCard () {
   counter.value--
-  getNewLetterCard()
+  getCard()
 }
 
-function getNewLetterCard () {
-  if (counter.value < 0 || counter.value === alphabetList.value.length) {
+function getCard () {
+  if (counter.value >= alphabetList.value.length) {
     counter.value = 0
-    alphabetList.value = getAlphabet()
+  }
+  else if (counter.value < 0) {
+    counter.value = alphabetList.value.length - 1
   }
 
   const letter = alphabetList.value[counter.value]

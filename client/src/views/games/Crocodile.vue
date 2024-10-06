@@ -15,10 +15,13 @@ LayoutBasePage(
     v-row(justify="center")
       v-col(cols="12" sm="6" md="5" lg="4")
         .d-flex.justify-center
-          CardsStack.mt-2.mb-12(ref="elCardsStack")
+          CardsStack.mt-2.mb-10(
+            ref="elCardsStack"
+            v-touch="{ left: () => getItem }"
+          )
             .d-flex.flex-column.w-100
               .text-h4.text-center.mb-2 {{ currentItem?.titles[locale] }}
-              v-img(
+              v-img.select-none(
                 :src="currentItem?.src"
                 :alt="currentItem?.name"
                 aspect-ratio="1"
@@ -29,6 +32,8 @@ LayoutBasePage(
             v-microanim
             :text="$t('new_task')"
             color="primary"
+            variant="outlined"
+            size="large"
             @click="getItem"
           )
     Dev

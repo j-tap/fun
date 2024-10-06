@@ -6,32 +6,21 @@ LayoutBasePage(
 )
   Tabs(v-model="tab" :items="tabs")
     template(v-slot:colors)
-      v-card.mx-auto(
+      CardInfo(
         :color="currentColor.hex"
-        max-width="340"
+        @prev="getPrevCard"
+        @next="getNextCard"
       )
-        v-img.align-end(
-          aspect-ratio="1"
-          cover
-        )
-          v-card-actions.align-end
-            div
-              .text-h3 {{ currentColor.title }}
-              div ({{ currentColor.transcription }})
-            v-spacer
-            .caption {{ currentColor.titleLocal }}
-
-      .text-center.my-4
-        v-btn(
-          :text="$t('next')"
-          color="orange"
-          size="large"
-          @click="getColor"
-        )
+        div
+          .text-h3 {{ currentColor.title }}
+          div ({{ currentColor.transcription }})
+        v-spacer
+        .caption {{ currentColor.titleLocal }}
 </template>
 
 <script setup>
 import LayoutBasePage from '@/components/layouts/BasePage.vue'
+import CardInfo from '@/components/CardInfo/index.vue'
 import Tabs from '@/components/Tabs/index.vue'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -49,19 +38,34 @@ const tab = ref('colors')
 const config = ref(null)
 const colors = computed(() => config.value?.colors || [])
 const currentColor = ref({})
-const indexColor = ref(0)
+const counter = ref(0)
 
 fetch(`${path}/config.json`).then(async response => {
   config.value = await response.json()
-  getColor()
+  getCard()
 })
 
-function getColor () {
-  if (indexColor.value >= Object.keys(colors.value).length) {
-    indexColor.value = 0
+function getNextCard () {
+  counter.value++
+  getCard()
+}
+
+function getPrevCard () {
+  counter.value--
+  getCard()
+}
+
+function getCard () {
+  const keys = Object.keys(colors.value)
+
+  if (counter.value >= keys.length) {
+    counter.value = 0
+  }
+  else if (counter.value < 0) {
+    counter.value = keys.length - 1
   }
 
-  const item = colors.value[indexColor.value]
+  const item = colors.value[counter.value]
 
   currentColor.value = {
     title: item.titles.es,
@@ -70,7 +74,5 @@ function getColor () {
     hex: item.hex,
     name: item.name,
   }
-
-  indexColor.value++
 }
 </script>
