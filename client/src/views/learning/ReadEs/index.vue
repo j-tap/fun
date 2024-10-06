@@ -7,15 +7,15 @@ LayoutBasePage(
   Tabs(v-model="tab" :items="tabs")
     template(v-slot:colors)
       CardInfo(
-        :color="currentColor.hex"
+        :color="cardCurrent.hex"
         @prev="getPrevCard"
         @next="getNextCard"
       )
         div
-          .text-h3 {{ currentColor.title }}
-          div ({{ currentColor.transcription }})
+          .text-h3 {{ cardCurrent.title }}
+          div ({{ cardCurrent.transcription }})
         v-spacer
-        .caption {{ currentColor.titleLocal }}
+        .caption {{ cardCurrent.titleLocal }}
 </template>
 
 <script setup>
@@ -37,7 +37,7 @@ const tabs = computed(() => [
 const tab = ref('colors')
 const config = ref(null)
 const colors = computed(() => config.value?.colors || [])
-const currentColor = ref({})
+const cardCurrent = ref({})
 const counter = ref(0)
 
 fetch(`${path}/config.json`).then(async response => {
@@ -67,7 +67,7 @@ function getCard () {
 
   const item = colors.value[counter.value]
 
-  currentColor.value = {
+  cardCurrent.value = {
     title: item.titles.es,
     titleLocal: item.titles[locale.value],
     transcription: item.transcription,

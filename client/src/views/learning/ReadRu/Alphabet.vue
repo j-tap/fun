@@ -1,17 +1,17 @@
 <template lang="pug">
 CardInfo(
-  :src="letterCard.isDisplayImg ? letterCard.src : ''"
-  :key="letterCard.key"
+  :src="cardCurrent.isDisplayImg ? cardCurrent.src : ''"
+  :key="cardCurrent.key"
   @prev="getPrevCard"
   @next="getNextCard"
-  @click="!settings.display_img ? letterCard.isDisplayImg = !letterCard.isDisplayImg : undefined"
+  @click="!settings.display_img ? cardCurrent.isDisplayImg = !cardCurrent.isDisplayImg : undefined"
 )
-  .text-h1.font-weight-bold(:class="`text-${letterCard.color}`")
-    span.text-uppercase {{ letterCard.letter }}
-    span.text-lowercase {{ letterCard.letter }}
+  .text-h1.font-weight-bold(:class="`text-${cardCurrent.color}`")
+    span.text-uppercase {{ cardCurrent.letter }}
+    span.text-lowercase {{ cardCurrent.letter }}
   v-spacer
   v-btn(
-    :icon="letterCard.isPlaying ? 'mdi-stop' : 'mdi-play'"
+    :icon="cardCurrent.isPlaying ? 'mdi-stop' : 'mdi-play'"
     color="green"
     variant="outlined"
     @click.stop="togglePlay"
@@ -32,7 +32,7 @@ const imgUrl = `${resourcesUrl}/images/`
 const vowels = 'аеёиоуыэюя'.split('')
 const alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'.split('')
 const alphabetList = ref([])
-const letterCard = ref({})
+const cardCurrent = ref({})
 const counter = ref(0)
 const settings = computed(() => learningReadRuStore.settings)
 
@@ -42,7 +42,7 @@ watch(() => settings.value.shuffle, () => {
 })
 
 watch(() => settings.value.display_img, (val) => {
-  letterCard.value.isDisplayImg = val
+  cardCurrent.value.isDisplayImg = val
 })
 
 onMounted(() => {
@@ -74,7 +74,7 @@ function getCard () {
 
   const letter = alphabetList.value[counter.value]
 
-  letterCard.value = {
+  cardCurrent.value = {
     letter,
     color: vowels.includes(letter) ? 'red-lighten-2' : 'blue-lighten-2',
     src: `${imgUrl}${letterToNumber(letter)}.webp`,
@@ -86,7 +86,7 @@ function getCard () {
   }
 
   if (settings.value.voice) {
-    letterCard.value.audio.play()
+    cardCurrent.value.audio.play()
   }
 }
 
@@ -95,19 +95,19 @@ function getAlphabet () {
 }
 
 function togglePlay () {
-  const { audio, isPlaying } = letterCard.value
+  const { audio, isPlaying } = cardCurrent.value
 
   if (!isPlaying.value) {
     audio.play()
-    letterCard.value.isPlaying = true
+    cardCurrent.value.isPlaying = true
     audio.addEventListener('ended', () => {
-      letterCard.value.isPlaying = false;
+      cardCurrent.value.isPlaying = false;
     }, { once: true })
   }
   else {
     audio.pause()
     audio.currentTime = 0
-    letterCard.value.isPlaying = false
+    cardCurrent.value.isPlaying = false
   }
 }
 

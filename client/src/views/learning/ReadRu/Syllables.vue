@@ -1,10 +1,24 @@
 <template lang="pug">
-v-container
-  |Test
-  pre {{ syllables }}
+CardInfo(
+  outlined
+  @prev="getPrevCard"
+  @next="getNextCard"
+)
+  .d-flex.justify-center.ga-3
+    v-hover(
+      v-for="(letter, ind) in cardCurrent.syllable"
+      :key="ind"
+    )
+      template(v-slot:default="{ isHovering, props }")
+        .text-h2.font-weight-bold.select-none(
+          v-bind="props"
+          :class="{ 'text-red-darken-3': isHovering }"
+          v-text="letter"
+        )
 </template>
 
 <script setup>
+import CardInfo from '@/components/CardInfo/index.vue'
 import { onMounted, ref } from 'vue'
 import { strRevert } from '@/utils/common.js'
 import useArray from '@/composables/useArray.js'
@@ -13,11 +27,37 @@ import useArray from '@/composables/useArray.js'
 // const config = ref({})
 const { shuffleArray } = useArray()
 const syllables = ref([])
+const counter = ref(0)
+const cardCurrent = ref({})
 
 onMounted(() => {
   const arr = getSyllables()
   syllables.value = shuffleArray(arr)
+  getCard()
 })
+
+function getNextCard () {
+  counter.value++
+  getCard()
+}
+
+function getPrevCard () {
+  counter.value--
+  getCard()
+}
+
+function getCard () {
+  if (counter.value >= syllables.value.length) {
+    counter.value = 0
+  }
+  else if (counter.value < 0) {
+    counter.value = syllables.value.length - 1
+  }
+
+  cardCurrent.value = {
+    syllable: syllables.value[counter.value],
+  }
+}
 
 function getSyllables () {
   const result = []

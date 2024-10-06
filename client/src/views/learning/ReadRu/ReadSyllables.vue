@@ -6,11 +6,11 @@ CardInfo(
 )
   .d-flex.justify-center.ga-3
     v-hover(
-      v-for="(syllable, ind) in currentCard.word"
+      v-for="(syllable, ind) in cardCurrent.word"
       :key="ind"
     )
       template(v-slot:default="{ isHovering, props }")
-        span.text-h2.font-weight-bold.select-none(
+        .text-h2.font-weight-bold.select-none(
           v-bind="props"
           :class="{ 'text-red-darken-3': isHovering }"
           v-text="syllable"
@@ -23,7 +23,7 @@ import { computed, onMounted, ref } from 'vue'
 
 const path = '/learning/read-ru'
 const config = ref(null)
-const currentCard = ref({ word: [] })
+const cardCurrent = ref({ word: [] })
 const counter = ref(0)
 const words = computed(() => config.value?.words || [])
 
@@ -50,7 +50,7 @@ function getCard () {
     counter.value = words.value.length - 1
   }
 
-  currentCard.value = {
+  cardCurrent.value = {
     word: words.value[counter.value],
   }
 }
