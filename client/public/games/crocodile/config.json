@@ -12,6 +12,15 @@
       }
     },
     {
+      "name": "batman",
+      "category": "characters",
+      "titles": {
+        "en": "Batman",
+        "es": "Batman",
+        "ru": "Бэтмен"
+      }
+    },
+    {
       "name": "bear",
       "titles": {
         "en": "Bear",
@@ -25,6 +34,15 @@
         "en": "Boar",
         "es": "Jabalí",
         "ru": "Кабан"
+      }
+    },
+    {
+      "name": "bob",
+      "category": "characters",
+      "titles": {
+        "en": "Sponge Bob",
+        "es": "Bob Esponja",
+        "ru": "Губка Боб"
       }
     },
     {
@@ -65,6 +83,23 @@
         "en": "Caterpillar",
         "es": "Oruga",
         "ru": "Гусеница"
+      }
+    },
+    {
+      "name": "chameleon",
+      "titles": {
+        "en": "Chameleon",
+        "es": "Camaleón",
+        "ru": "Хамелеон"
+      }
+    },
+    {
+      "name": "cheburashka",
+      "category": "characters",
+      "titles": {
+        "en": "Cheburashka",
+        "es": "Cheburashka",
+        "ru": "Чебурашка"
       }
     },
     {
@@ -172,6 +207,15 @@
       }
     },
     {
+      "name": "elsa",
+      "category": "characters",
+      "titles": {
+        "en": "Elsa",
+        "es": "Elsa",
+        "ru": "Эльза"
+      }
+    },
+    {
       "name": "flamingo",
       "titles": {
         "en": "Flamingo",
@@ -244,6 +288,15 @@
       }
     },
     {
+      "name": "harry-potter",
+      "category": "characters",
+      "titles": {
+        "en": "Harry Potter",
+        "es": "Harry Potter",
+        "ru": "Гарри Поттер"
+      }
+    },
+    {
       "name": "hedgehog",
       "titles": {
         "en": "Hedgehog",
@@ -268,11 +321,29 @@
       }
     },
     {
+      "name": "hulk",
+      "category": "characters",
+      "titles": {
+        "en": "Hulk",
+        "es": "Hulk",
+        "ru": "Халк"
+      }
+    },
+    {
       "name": "kangaroo",
       "titles": {
         "en": "Kangaroo",
         "es": "Canguro",
         "ru": "Кенгуру"
+      }
+    },
+    {
+      "name": "karlson",
+      "category": "characters",
+      "titles": {
+        "en": "Karlson",
+        "es": "Karlson",
+        "ru": "Карлсон"
       }
     },
     {
@@ -313,6 +384,15 @@
         "en": "Llama",
         "es": "Llama",
         "ru": "Лама"
+      }
+    },
+    {
+      "name": "mike",
+      "category": "characters",
+      "titles": {
+        "en": "Mike mouse",
+        "es": "Mike ratón",
+        "ru": "Майк Маус"
       }
     },
     {
@@ -388,6 +468,15 @@
       }
     },
     {
+      "name": "pikachu",
+      "category": "characters",
+      "titles": {
+        "en": "Pikachu",
+        "es": "Pikachu",
+        "ru": "Пикачу"
+      }
+    },
+    {
       "name": "porcupine",
       "titles": {
         "en": "Porcupine",
@@ -452,6 +541,15 @@
       }
     },
     {
+      "name": "smurf",
+      "category": "characters",
+      "titles": {
+        "en": "Smurf",
+        "es": "Pitufo",
+        "ru": "Смурф"
+      }
+    },
+    {
       "name": "snake",
       "titles": {
         "en": "Snake",
@@ -460,11 +558,38 @@
       }
     },
     {
+      "name": "snow-white",
+      "category": "characters",
+      "titles": {
+        "en": "Snow White",
+        "es": "Blancanieves",
+        "ru": "Белоснежка"
+      }
+    },
+    {
+      "name": "sonic",
+      "category": "characters",
+      "titles": {
+        "en": "Sonic",
+        "es": "Sonic",
+        "ru": "Соник"
+      }
+    },
+    {
       "name": "spider",
       "titles": {
         "en": "Spider",
         "es": "Araña",
         "ru": "Паук"
+      }
+    },
+    {
+      "name": "spiderman",
+      "category": "characters",
+      "titles": {
+        "en": "Spiderman",
+        "es": "Spiderman",
+        "ru": "Человек-паук"
       }
     },
     {
@@ -489,6 +614,15 @@
         "en": "Stork",
         "es": "Cigüeña",
         "ru": "Аист"
+      }
+    },
+    {
+      "name": "superman",
+      "category": "characters",
+      "titles": {
+        "en": "Superman",
+        "es": "Superman",
+        "ru": "Супермен"
       }
     },
     {
