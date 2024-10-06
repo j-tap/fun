@@ -15,7 +15,9 @@ LayoutBasePage(
           cover
         )
           v-card-actions.align-end
-            .text-h3 {{ currentColor.title }}
+            div
+              .text-h3 {{ currentColor.title }}
+              div ({{ currentColor.transcription }})
             v-spacer
             .caption {{ currentColor.titleLocal }}
 
@@ -64,6 +66,7 @@ function getColor () {
   currentColor.value = {
     title: item.titles.es,
     titleLocal: item.titles[locale.value],
+    transcription: item.transcription,
     hex: item.hex,
     name: item.name,
   }

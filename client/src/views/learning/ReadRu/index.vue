@@ -17,6 +17,8 @@ LayoutBasePage(
       template(v-slot:alphabet)
         AlphabetRu
       template(v-slot:syllables)
+        SyllablesRu
+      template(v-slot:read-syllables)
         ReadSyllables
 
   template(v-slot:extra)
@@ -38,6 +40,11 @@ LayoutBasePage(
               :label="$t('settings.to_voice')"
               color="orange"
             )
+            v-switch(
+              v-model="settings.display_img"
+              :label="$t('settings.display_image')"
+              color="orange"
+            )
         v-card-actions
           v-spacer
           v-btn(
@@ -50,6 +57,7 @@ LayoutBasePage(
 import LayoutBasePage from '@/components/layouts/BasePage.vue'
 import Tabs from '@/components/Tabs/index.vue'
 import AlphabetRu from './Alphabet.vue'
+import SyllablesRu from './Syllables.vue'
 import ReadSyllables from './ReadSyllables.vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -66,6 +74,11 @@ const tabs = computed(() => [
   },
   {
     value: 'syllables',
+    text: t('learning.syllables'),
+    icon: 'mdi-file-word-box-outline',
+  },
+  {
+    value: 'read-syllables',
     text: t('learning.reading_by_syllables'),
     icon: 'mdi-book-open-variant',
   },

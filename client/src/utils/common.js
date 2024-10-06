@@ -9,3 +9,7 @@ export function getRand (min, max) {
 export function genToken () {
   return Math.random().toString(36).substr(2) + Date.now().toString(36)
 }
+
+export function strRevert (str = '') {
+  return str.split('').reverse().join('')
+}

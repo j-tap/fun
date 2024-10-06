@@ -3,6 +3,7 @@
     {
       "name": "red",
       "hex": "#ff0000",
+      "transcription": "рохо",
       "titles": {
         "en": "Red",
         "ru": "Красный",
@@ -12,6 +13,7 @@
     {
       "name": "dark-red",
       "hex": "#8b0000",
+      "transcription": "рохо оскуро",
       "titles": {
         "en": "Dark red",
         "ru": "Темно-красный",
@@ -21,6 +23,7 @@
     {
       "name": "pink",
       "hex": "#ff69b4",
+      "transcription": "роса",
       "titles": {
         "en": "Pink",
         "ru": "Розовый",
@@ -30,6 +33,7 @@
     {
       "name": "purple",
       "hex": "#800080",
+      "transcription": "пурпура",
       "titles": {
         "en": "Purple",
         "ru": "Пурпурный",
@@ -39,6 +43,7 @@
     {
       "name": "blue",
       "hex": "#0000ff",
+      "transcription": "асул",
       "titles": {
         "en": "Blue",
         "ru": "Синий",
@@ -48,6 +53,7 @@
     {
       "name": "light-blue",
       "hex": "#add8e6",
+      "transcription": "асул кларо",
       "titles": {
         "en": "Light blue",
         "ru": "Голубой",
@@ -57,6 +63,7 @@
     {
       "name": "yellow",
       "hex": "#ffff00",
+      "transcription": "амарило",
       "titles": {
         "en": "Yellow",
         "ru": "Желтый",
@@ -66,6 +73,7 @@
     {
       "name": "green",
       "hex": "#008000",
+      "transcription": "верде",
       "titles": {
         "en": "Green",
         "ru": "Зеленый",
@@ -75,6 +83,7 @@
     {
       "name": "light-green",
       "hex": "#90ee90",
+      "transcription": "верде кларо",
       "titles": {
         "en": "Light green",
         "ru": "Светло-зеленый",
@@ -84,6 +93,7 @@
     {
       "name": "black",
       "hex": "#000000",
+      "transcription": "негро",
       "titles": {
         "en": "Black",
         "ru": "Черный",
@@ -93,6 +103,7 @@
     {
       "name": "white",
       "hex": "#ffffff",
+      "transcription": "бланко",
       "titles": {
         "en": "White",
         "ru": "Белый",
@@ -102,6 +113,7 @@
     {
       "name": "orange",
       "hex": "#ffa500",
+      "transcription": "наранжа",
       "titles": {
         "en": "Orange",
         "ru": "Оранжевый",
@@ -111,6 +123,7 @@
     {
       "name": "brown",
       "hex": "#a52a2a",
+      "transcription": "маррон",
       "titles": {
         "en": "Brown",
         "ru": "Коричневый",
@@ -120,6 +133,7 @@
     {
       "name": "gray",
       "hex": "#808080",
+      "transcription": "грис",
       "titles": {
         "en": "Gray",
         "ru": "Серый",

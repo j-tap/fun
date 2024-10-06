@@ -1,11 +1,12 @@
 <template lang="pug">
-section.alphabet
+v-container(max-width="340")
   v-card.mx-auto(
     :key="letterCard.key"
-    max-width="340"
+    v-touch="{ left: () => getPrevCard, right: () => getNextCard }"
+    @click="!settings.display_img ? letterCard.isDisplayImg = !letterCard.isDisplayImg : undefined"
   )
     v-img.align-end(
-      :src="letterCard.src"
+      :src="letterCard.isDisplayImg ? letterCard.src : ''"
       aspect-ratio="1"
       gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.8)"
       cover
@@ -19,14 +20,21 @@ section.alphabet
           :icon="letterCard.isPlaying ? 'mdi-stop' : 'mdi-play'"
           color="green"
           variant="outlined"
-          @click="togglePlay"
+          @click.stop="togglePlay"
         )
-  .text-center.my-4
+  .d-flex.flex-center.my-4
+    v-btn(
+      :text="$t('prev')"
+      color="orange"
+      size="large"
+      @click.stop="getPrevCard"
+    )
+    v-spacer
     v-btn(
       :text="$t('next')"
       color="orange"
       size="large"
-      @click="getNewLetterCard"
+      @click.stop="getNextCard"
     )
 </template>
 
@@ -47,10 +55,14 @@ const letterCard = ref({})
 const counter = ref(0)
 const settings = computed(() => learningReadRuStore.settings)
 
-watch(settings, () => {
+watch(() => settings.value.shuffle, () => {
   counter.value = 0
   printCard()
-}, { deep: true })
+})
+
+watch(() => settings.value.display_img, (val) => {
+  letterCard.value.isDisplayImg = val
+})
 
 onMounted(() => {
   printCard()
@@ -61,8 +73,18 @@ function printCard () {
   getNewLetterCard()
 }
 
+function getNextCard () {
+  counter.value++
+  getNewLetterCard()
+}
+
+function getPrevCard () {
+  counter.value--
+  getNewLetterCard()
+}
+
 function getNewLetterCard () {
-  if (counter.value === alphabetList.value.length) {
+  if (counter.value < 0 || counter.value === alphabetList.value.length) {
     counter.value = 0
     alphabetList.value = getAlphabet()
   }
@@ -77,9 +99,8 @@ function getNewLetterCard () {
     isVowel: vowels.includes(letter),
     audio: new Audio(`${audioUrl}${letter}.aac`),
     isPlaying: false,
+    isDisplayImg: settings.value.display_img,
   }
-
-  counter.value++
 
   if (settings.value.voice) {
     letterCard.value.audio.play()

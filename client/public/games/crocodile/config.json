@@ -28,11 +28,43 @@
       }
     },
     {
+      "name": "bumblebee",
+      "titles": {
+        "en": "Bumblebee",
+        "es": "Abejorro",
+        "ru": "Шмель"
+      }
+    },
+    {
+      "name": "butterfly",
+      "titles": {
+        "en": "Butterfly",
+        "es": "Mariposa",
+        "ru": "Бабочка"
+      }
+    },
+    {
+      "name": "camel",
+      "titles": {
+        "en": "Camel",
+        "es": "Camello",
+        "ru": "Верблюд"
+      }
+    },
+    {
       "name": "cat",
       "titles": {
         "en": "Cat",
         "es": "Gato",
         "ru": "Кот"
+      }
+    },
+    {
+      "name": "caterpillar",
+      "titles": {
+        "en": "Caterpillar",
+        "es": "Oruga",
+        "ru": "Гусеница"
       }
     },
     {
@@ -44,11 +76,35 @@
       }
     },
     {
+      "name": "colibri",
+      "titles": {
+        "en": "Colibri",
+        "es": "Colibríes",
+        "ru": "Колибри"
+      }
+    },
+    {
       "name": "cow",
       "titles": {
         "en": "Cow",
         "es": "Vaca",
         "ru": "Корова"
+      }
+    },
+    {
+      "name": "crab",
+      "titles": {
+        "en": "Crab",
+        "es": "Cangrejo",
+        "ru": "Краб"
+      }
+    },
+    {
+      "name": "deer",
+      "titles": {
+        "en": "Deer",
+        "es": "Ciervo",
+        "ru": "Олень"
       }
     },
     {
@@ -60,11 +116,27 @@
       }
     },
     {
+      "name": "dolphin",
+      "titles": {
+        "en": "Dolphin",
+        "es": "Delfín",
+        "ru": "Дельфин"
+      }
+    },
+    {
       "name": "donkey",
       "titles": {
         "en": "Donkey",
         "es": "Burro",
         "ru": "Осел"
+      }
+    },
+    {
+      "name": "dragonfly",
+      "titles": {
+        "en": "Dragonfly",
+        "es": "Libélula",
+        "ru": "Стрекоза"
       }
     },
     {
@@ -84,6 +156,30 @@
       }
     },
     {
+      "name": "elephant",
+      "titles": {
+        "en": "Elephant",
+        "es": "Elefante",
+        "ru": "Слон"
+      }
+    },
+    {
+      "name": "elk",
+      "titles": {
+        "en": "Elk",
+        "es": "Alce",
+        "ru": "Лось"
+      }
+    },
+    {
+      "name": "flamingo",
+      "titles": {
+        "en": "Flamingo",
+        "es": "Flamenco",
+        "ru": "Фламинго"
+      }
+    },
+    {
       "name": "fox",
       "titles": {
         "en": "Fox",
@@ -97,6 +193,14 @@
         "en": "Frog",
         "es": "Rana",
         "ru": "Лягушка"
+      }
+    },
+    {
+      "name": "giraffe",
+      "titles": {
+        "en": "Giraffe",
+        "es": "Jirafa",
+        "ru": "Жираф"
       }
     },
     {
@@ -116,11 +220,43 @@
       }
     },
     {
+      "name": "grasshopper",
+      "titles": {
+        "en": "Grasshopper",
+        "es": "Saltamontes",
+        "ru": "Кузнечик"
+      }
+    },
+    {
+      "name": "gull",
+      "titles": {
+        "en": "Gull",
+        "es": "Gaviota",
+        "ru": "Чайка"
+      }
+    },
+    {
       "name": "hamster",
       "titles": {
         "en": "Hamster",
         "es": "Hámster",
         "ru": "Хомяк"
+      }
+    },
+    {
+      "name": "hedgehog",
+      "titles": {
+        "en": "Hedgehog",
+        "es": "Erizo",
+        "ru": "Еж"
+      }
+    },
+    {
+      "name": "hippopotamus",
+      "titles": {
+        "en": "Hippopotamus",
+        "es": "Hipopótamo",
+        "ru": "Гиппопотам"
       }
     },
     {
@@ -132,6 +268,14 @@
       }
     },
     {
+      "name": "kangaroo",
+      "titles": {
+        "en": "Kangaroo",
+        "es": "Canguro",
+        "ru": "Кенгуру"
+      }
+    },
+    {
       "name": "koala",
       "titles": {
         "en": "Koala",
@@ -140,11 +284,35 @@
       }
     },
     {
+      "name": "leopard",
+      "titles": {
+        "en": "Leopard",
+        "es": "Leopardo",
+        "ru": "Леопард"
+      }
+    },
+    {
       "name": "lion",
       "titles": {
         "en": "Lion",
         "es": "León",
         "ru": "Лев"
+      }
+    },
+    {
+      "name": "lizard",
+      "titles": {
+        "en": "Lizard",
+        "es": "Lagartija",
+        "ru": "Ящерица"
+      }
+    },
+    {
+      "name": "llama",
+      "titles": {
+        "en": "Llama",
+        "es": "Llama",
+        "ru": "Лама"
       }
     },
     {
@@ -188,6 +356,22 @@
       }
     },
     {
+      "name": "panther",
+      "titles": {
+        "en": "Panther",
+        "es": "Pantera",
+        "ru": "Пантера"
+      }
+    },
+    {
+      "name": "peacock",
+      "titles": {
+        "en": "Peacock",
+        "es": "Pavo real",
+        "ru": "Павлин"
+      }
+    },
+    {
       "name": "penguin",
       "titles": {
         "en": "Penguin",
@@ -201,6 +385,14 @@
         "en": "Pig",
         "es": "Cerdo",
         "ru": "Свинья"
+      }
+    },
+    {
+      "name": "porcupine",
+      "titles": {
+        "en": "Porcupine",
+        "es": "Puercoespín",
+        "ru": "Дикобраз"
       }
     },
     {
@@ -220,11 +412,27 @@
       }
     },
     {
+      "name": "rhinoceros",
+      "titles": {
+        "en": "Rhinoceros",
+        "es": "Rinoceronte",
+        "ru": "Носорог"
+      }
+    },
+    {
       "name": "sea-horse",
       "titles": {
         "en": "Sea Horse",
         "es": "Caballito de mar",
         "ru": "Морской конёк"
+      }
+    },
+    {
+      "name": "seal",
+      "titles": {
+        "en": "Seal",
+        "es": "Foca",
+        "ru": "Тюлень"
       }
     },
     {
@@ -249,6 +457,30 @@
         "en": "Snake",
         "es": "Serpiente",
         "ru": "Змея"
+      }
+    },
+    {
+      "name": "spider",
+      "titles": {
+        "en": "Spider",
+        "es": "Araña",
+        "ru": "Паук"
+      }
+    },
+    {
+      "name": "squirrel",
+      "titles": {
+        "en": "Squirrel",
+        "es": "Ardilla",
+        "ru": "Белка"
+      }
+    },
+    {
+      "name": "stingray",
+      "titles": {
+        "en": "Stingray",
+        "es": "Raya",
+        "ru": "Скат"
       }
     },
     {
@@ -292,11 +524,35 @@
       }
     },
     {
+      "name": "wasp",
+      "titles": {
+        "en": "Wasp",
+        "es": "Avispa",
+        "ru": "Оса"
+      }
+    },
+    {
       "name": "wolf",
       "titles": {
         "en": "Wolf",
         "es": "Lobo",
         "ru": "Волк"
+      }
+    },
+    {
+      "name": "woodpecker",
+      "titles": {
+        "en": "Woodpecker",
+        "es": "Pájaro carpintero",
+        "ru": "Дятел"
+      }
+    },
+    {
+      "name": "zebra",
+      "titles": {
+        "en": "Zebra",
+        "es": "Cebra",
+        "ru": "Зебра"
       }
     }
   ]

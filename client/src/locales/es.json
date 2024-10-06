@@ -14,10 +14,12 @@
   "save": "Guardar",
   "ok": "OK",
   "next": "Siguiente",
+  "prev": "Anterior",
   "copied": "Copiado",
 
   "settings.shuffle": "Barajar",
   "settings.to_voice": "A la voz",
+  "settings.display_image": "Mostrar imagen",
 
   "home.title": "Inicio",
 
@@ -32,6 +34,7 @@
   "learning.colors": "Colores",
   "learning.read-ru.title": "Leyendo en ruso",
   "learning.alphabet": "Alfabeto",
+  "learning.syllables": "Sílabas",
   "learning.reading_by_syllables": "Lectura por sílabas",
 
   "learning.read-es.title": "Leyendo en español"

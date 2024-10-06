@@ -14,10 +14,12 @@
   "save": "Save",
   "ok": "OK",
   "next": "Next",
+  "prev": "Previous",
   "copied": "Copied",
 
   "settings.shuffle": "Shuffle",
   "settings.to_voice": "To voice",
+  "settings.display_image": "Display image",
 
   "home.title": "Home",
 
@@ -32,6 +34,7 @@
   "learning.colors": "Colors",
   "learning.read-ru.title": "Reading in Russian",
   "learning.alphabet": "Alphabet",
+  "learning.syllables": "Syllables",
   "learning.reading_by_syllables": "Reading by syllables",
 
   "learning.read-es.title": "Reading in Spanish"

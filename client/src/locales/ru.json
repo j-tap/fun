@@ -14,10 +14,12 @@
   "save": "Сохранить",
   "ok": "ОК",
   "next": "Далее",
+  "prev": "Назад",
   "copied": "Скопировано",
 
   "settings.shuffle": "Перемешать",
   "settings.to_voice": "Озвучивать",
+  "settings.display_image": "Показывать изображение",
 
   "home.title": "Главная",
 
@@ -32,6 +34,7 @@
   "learning.colors": "Цвета",
   "learning.read-ru.title": "Чтение на русском",
   "learning.alphabet": "Алфавит",
+  "learning.syllables": "Слоги",
   "learning.reading_by_syllables": "Чтение по слогам",
 
   "learning.read-es.title": "Чтение на испанском"

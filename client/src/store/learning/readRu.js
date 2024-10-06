@@ -5,6 +5,7 @@ const id = 'learningReadRu'
 const settingsDefault = {
   shuffle: true,
   to_voice: false,
+  display_img: true,
 }
 
 export const useLearningReadRuStore = defineStore(id, () => {

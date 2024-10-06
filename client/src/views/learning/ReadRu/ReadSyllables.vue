@@ -10,7 +10,7 @@ section.read-syllables
         :key="ind"
       )
         template(v-slot:default="{ isHovering, props }")
-          span.text-h3.font-weight-bold(
+          span.text-h2.font-weight-bold.select-none(
             v-bind="props"
             :class="{ 'text-red-darken-3': isHovering }"
             v-text="syllable"
