@@ -1,6 +1,7 @@
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
+import { VSnackbarQueue } from 'vuetify/labs/VSnackbarQueue'
 import * as directives from 'vuetify/directives'
 import { ru, en, es } from 'vuetify/locale'
 import '@mdi/font/css/materialdesignicons.css'
@@ -11,7 +12,10 @@ import { dark, light } from './themes.js'
 const { locale } = i18n.global
 
 const vuetify = createVuetify({
-  components,
+  components: {
+    ...components,
+    VSnackbarQueue,
+  },
   directives,
   locale: {
     current: locale.value,

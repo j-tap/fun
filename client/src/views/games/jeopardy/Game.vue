@@ -4,7 +4,8 @@ section.game-block
     v-btn(
       :text="$t('start')"
       color="info"
-      size="large"
+      size="x-large"
+      variant="outlined"
       @click="displayDialogCategories = true"
     )
 

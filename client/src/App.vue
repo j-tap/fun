@@ -6,12 +6,13 @@ v-app(:theme="commonStore.theme")
     RouterView
 
   TheFooter
+  TheSnackbars
 </template>
 
 <script setup>
 import TheHeader from '@/components/TheHeader/index.vue'
 import TheFooter from '@/components/TheFooter.vue'
-import { computed } from 'vue'
+import TheSnackbars from '@/components/TheSnackbars.vue'
 import { useCommonStore } from '@/store/common'
 
 const commonStore = useCommonStore()

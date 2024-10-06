@@ -65,22 +65,29 @@ LayoutGameJeopardy
 import LayoutGameJeopardy from '@/components/layouts/games/Jeopardy.vue'
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
 import GamBlock from './Game.vue'
-import { computed, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { inject } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 import { genToken } from '@/utils/common.js'
+import { useSnackbar } from '@/composables/useSnackbar'
 
 const socket = new WebSocket(inject('wsUrl'))
+const { addSnackbar } = useSnackbar()
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'
 const maxPlayers = 5
 const formPlayerModel = { id: 0, token: null, name: null, points: 0, color: null }
-const colors = ['red', 'green', 'blue', 'purple', 'orange', 'pink', 'cyan', 'indigo', 'amber-deep']
+const colors = ['red', 'blue', 'purple', 'orange', 'pink', 'cyan', 'indigo', 'amber-deep']
 const displayDialogAddPlayer = ref(false)
 const config = ref(null)
 const formPlayer = ref({ ...formPlayerModel })
 const players = computed(() => gameJeopardyStore.players)
 const canAddPlayer = computed(() => players.value.length < maxPlayers)
+const dataWs = {
+  admin: true,
+  game: 'jeopardy',
+  players: players.value,
+}
 
 fetch(`${path}/config.json`).then(async response => {
   config.value = await response.json()
@@ -88,13 +95,35 @@ fetch(`${path}/config.json`).then(async response => {
 
 socket.addEventListener('open', () => {
   socket.send(JSON.stringify({
-    admin: true,
-    game: 'jeopardy',
+    ...dataWs,
+    type: 'CONNECTION',
   }))
 })
 
-socket.addEventListener('message', (event) => {
-  console.log('Сообщение от сервера: ', event.data, event)
+socket.addEventListener('message', ({ data }) => {
+  const dataObj = JSON.parse(`${data}`)
+  players.value.forEach(((o, ind) => {
+    const client = dataObj.clients?.find(o => o.token === dataObj.token) || {}
+    players.value[ind].online = (client && client.token === o.token)
+  }))
+
+  if (dataObj.type === 'CONNECTION') {
+    addSnackbar({ message: dataObj.message, type: 'success' })
+  }
+  else if (dataObj.type === 'CONNECTED_CLIENT') {
+    addSnackbar({ message: dataObj.message })
+  }
+  else if (dataObj.type === 'DISCONNECTED_CLIENT') {
+    addSnackbar({ message: dataObj.message })
+  }
+  else if (dataObj.type === 'READY') {
+    addSnackbar({ message: dataObj.message, type: 'success' })
+  }
+  else if (dataObj.type === 'ERROR') {
+    addSnackbar({ message: dataObj.message, type: 'error' })
+  }
+
+  console.log('Сообщение от сервера: ', dataObj)
 })
 
 function addPlayer () {
@@ -107,6 +136,7 @@ function addPlayer () {
     const availableColors = colors.filter(color => players.value.findIndex(o => o.color === color) === -1)
     const name = form.name.trim()
 
+    form.online = false
     form.id = players.value.length + 1
     form.token = genToken()
     form.name = name.charAt(0).toUpperCase() + name.slice(1)
@@ -114,6 +144,12 @@ function addPlayer () {
     gameJeopardyStore.addPlayer(form)
     displayDialogAddPlayer.value = false
     formPlayer.value = { ...formPlayerModel }
+
+    socket.send(JSON.stringify({
+      ...dataWs,
+      type: 'NEW_PLAYER',
+      players: players.value,
+    }))
   }
 }
 
