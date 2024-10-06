@@ -1,7 +1,9 @@
 <template lang="pug">
-v-container(max-width="340")
+v-container(
+  max-width="340"
+)
   v-card.mx-auto(
-    v-touch="{ left: () => getPrevCard, right: () => getNextCard }"
+    v-touch="{ left: () => getPrevCard(), right: () => getNextCard() }"
     :variant="outlined ? 'outlined' : undefined"
     :color="color"
     @click="click"
