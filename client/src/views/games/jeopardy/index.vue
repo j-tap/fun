@@ -116,8 +116,9 @@ socket.on('error', ({ message }) => {
   addSnackbar({ message, type: 'error' })
 })
 
-socket.on('left_player', ({ player, tokens }) => {
-  addSnackbar({ message: `Игрок ${player?.name} отключился`, type: 'warning' })
+socket.on('left_player', ({ token, player, tokens }) => {
+  const message = player?.name ? `Игрок ${player.name} отключился` : `Игрок ${token} удалён`
+  addSnackbar({ message, type: 'warning' })
   updatePlayers(tokens)
 })
 
@@ -126,63 +127,6 @@ function updatePlayers (tokens) {
     players.value[ind].online = tokens.includes(player.token)
   })
 }
-
-// socket.value.on('open', () => {
-//   socket.value.emit('connection', {
-//     ...dataWs,
-//   })
-// })
-//
-// socket.value.on('message', ({ data }) => {
-//   let dataObj
-//   try {
-//     dataObj = JSON.parse(data)
-//   }
-//   catch (error) {
-//     console.error('Ошибка при разборе данных:', error);
-//     return;
-//   }
-//
-//   if (Array.isArray(dataObj.clients)) {
-//     updatePlayerStatuses(dataObj.clients);
-//   }
-//
-//   handleServerMessage(dataObj);
-//
-//   console.log('Сообщение от сервера:', dataObj);
-// })
-
-// function updatePlayerStatuses (clients) {
-//   players.value.forEach((player, index) => {
-//     players.value[index].online = clients.some(o => o.token === player.token)
-//   })
-// }
-
-// function handleServerMessage (dataObj) {
-//   const { type, message } = dataObj
-//
-//   if (!type || !message) {
-//     console.warn('Получено некорректное сообщение от сервера:', dataObj)
-//     return
-//   }
-//
-//   switch (type) {
-//     case 'CONNECTION':
-//     case 'READY':
-//       addSnackbar({ message, type: 'success' })
-//       break;
-//     case 'CONNECTED_CLIENT':
-//     case 'DISCONNECTED_CLIENT':
-//       addSnackbar({ message })
-//       break
-//     case 'ERROR':
-//       addSnackbar({ message, type: 'error' })
-//       break
-//     default:
-//       console.warn('Неизвестный тип сообщения:', type)
-//       break
-//   }
-// }
 
 function addPlayer () {
   if (

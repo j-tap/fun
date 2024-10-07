@@ -52,10 +52,25 @@ ws.on('connection', (socket) => {
     const admin = getGameAdmin(data)
 
     if (admin) {
-      admin.players = data.players
+      const oldPlayers = admin.players || []
+      const newPlayers = data.players
+
+      admin.players = newPlayers
       clients.set(admin.socket, admin)
 
-      data.players.forEach(player => {
+      oldPlayers.forEach(oldPlayer => {
+        if (!newPlayers.some(newPlayer => newPlayer.token === oldPlayer.token)) {
+          const client = getPlayerWithSocket(oldPlayer.token)
+
+          if (client) {
+            client.socket.disconnect()
+            clients.delete(client.socket)
+            console.info(`Игрок ${oldPlayer.token} был отключен`)
+          }
+        }
+      })
+
+      newPlayers.forEach(player => {
         const client = getPlayerWithSocket(player.token)
 
         if (client) {
@@ -75,16 +90,18 @@ ws.on('connection', (socket) => {
     const client = clients.get(socket)
     const admin = getGameAdmin({ game: client?.game })
 
+    socket.emit('disconnected', { reason })
+
     clients.delete(socket)
 
     if (admin) {
-      const player = admin.players.find(o => o.token === client.token)
+      const player = admin.players.find(o => o.token === client?.token)
       const tokens = getTokens()
 
-      admin.socket.emit('left_player', { player, tokens })
+      admin.socket.emit('left_player', { token: client?.token, player, tokens })
     }
 
-    console.info('Клиент отключился', reason, client)
+    console.info('Клиент отключился', client)
   })
 })
 

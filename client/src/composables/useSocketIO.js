@@ -1,11 +1,13 @@
 import { onBeforeUnmount, reactive, ref } from 'vue'
 import { io } from 'socket.io-client'
+import { useSnackbar } from '@/composables/useSnackbar'
 
 export const optionsDefault = {
   autoConnect: false,
 }
 
 export function useSocketIO (url, options = optionsDefault) {
+  const { addSnackbar } = useSnackbar()
   const state = reactive({
     connected: true,
   })
@@ -17,6 +19,7 @@ export function useSocketIO (url, options = optionsDefault) {
   })
 
   socket.on('disconnect', () => {
+    addSnackbar({ message: 'Вы отключены', type: 'error' })
     state.connected = false
   })
 

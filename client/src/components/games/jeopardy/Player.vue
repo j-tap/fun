@@ -5,7 +5,6 @@ v-hover(v-if="value")
       v-bind="props"
       :class="$attrs.class"
       :title="value.name || 'Unknown'"
-      :to="link"
       color="info"
       variant="outlined"
     )
