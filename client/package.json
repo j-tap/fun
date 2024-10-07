@@ -16,6 +16,7 @@
     "pug": "^3.0.3",
     "register-service-worker": "^1.7.2",
     "sass": "^1.79.3",
+    "socket.io-client": "^4.8.0",
     "vue": "^3.4.29",
     "vue-i18n": "10",
     "vue-router": "4"

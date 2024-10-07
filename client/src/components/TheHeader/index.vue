@@ -4,7 +4,7 @@ v-app-bar(
   scroll-behavior="hide"
 )
   template(v-slot:image)
-    v-img.opacity-20(src="/img/header-bg.webp" cover)
+    v-img.opacity-30(src="/img/header-bg.webp" cover)
   template(v-slot:append)
     v-app-bar-nav-icon(variant="text" @click.stop="drawer = !drawer")
   v-toolbar-title

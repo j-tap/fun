@@ -101,7 +101,7 @@ section.game-block
 
 <script setup>
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
-import { computed, ref, watch } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 
 const props = defineProps({
@@ -109,6 +109,10 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
+  socket: {
+    type: Object,
+    default: () => ({})
+  }
 })
 
 const gameJeopardyStore = useGameJeopardyStore()
@@ -138,17 +142,22 @@ const currentQuestion = ref(null)
 const currentPlayer = ref(null)
 
 watch(displayDialogQuestion, (val) => {
-  if (!val) {
-    displayAnswer.value = false
+  if (val) {
+    props.socket.emit('new_quest', { game: 'jeopardy', quest: currentQuestion.value })
   }
+  else {
+    displayAnswer.value = false
+    currentPlayer.value = null
+  }
+})
+
+props.socket.on('player_quested', ({ player }) => {
+  currentPlayer.value = player
 })
 
 function selectQuestion (question) {
   currentQuestion.value = { ...question }
   gameJeopardyStore.addQuestionsUnavailable(question.id)
-  // TEMP FOR TEST
-  currentPlayer.value = players.value[Math.floor(Math.random() * players.value.length)]
-
   displayDialogQuestion.value = true
 }
 

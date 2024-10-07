@@ -1,6 +1,11 @@
 {
+  "author": "j-tap",
+  "private": true,
   "packageManager": "yarn@4.5.0",
+  "scripts": {
+    "serve": "node --env-file=.env server.js"
+  },
   "dependencies": {
-    "ws": "^8.18.0"
+    "socket.io": "^4.8.0"
   }
 }

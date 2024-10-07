@@ -1,7 +1,10 @@
 <template lang="pug">
 LayoutGameJeopardy
   v-card-text.text-center
-    GamBlock(:config="config")
+    GameBlock(
+      :config="config"
+      :socket="socket"
+    )
 
   v-card(:title="$t('players')")
     template(v-slot:append)
@@ -24,7 +27,6 @@ LayoutGameJeopardy
             :link="getPlayerLink(player)"
             manage
             @remove="gameJeopardyStore.removePlayer(player)"
-            @copy=""
           )
 
   v-dialog(
@@ -64,14 +66,15 @@ LayoutGameJeopardy
 <script setup>
 import LayoutGameJeopardy from '@/components/layouts/games/Jeopardy.vue'
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
-import GamBlock from './Game.vue'
-import { computed, reactive, ref } from 'vue'
+import GameBlock from './Game.vue'
+import { computed, reactive, ref, watch } from 'vue'
 import { inject } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 import { genToken } from '@/utils/common.js'
 import { useSnackbar } from '@/composables/useSnackbar'
+import { useSocketIO } from '@/composables/useSocketIO'
 
-const socket = new WebSocket(inject('wsUrl'))
+const { socket } = useSocketIO(inject('wsUrl'))
 const { addSnackbar } = useSnackbar()
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'
@@ -83,48 +86,103 @@ const config = ref(null)
 const formPlayer = ref({ ...formPlayerModel })
 const players = computed(() => gameJeopardyStore.players)
 const canAddPlayer = computed(() => players.value.length < maxPlayers)
-const dataWs = {
-  admin: true,
-  game: 'jeopardy',
-  players: players.value,
-}
 
 fetch(`${path}/config.json`).then(async response => {
   config.value = await response.json()
 })
 
-socket.addEventListener('open', () => {
-  socket.send(JSON.stringify({
-    ...dataWs,
-    type: 'CONNECTION',
-  }))
+watch(players, (value) => {
+  socket.emit('update_players', { game: 'jeopardy', players: value })
+}, { deep: true })
+
+socket.connect()
+
+socket.emit('join_admin', {
+  admin: true,
+  game: 'jeopardy',
+  players: players.value,
 })
 
-socket.addEventListener('message', ({ data }) => {
-  const dataObj = JSON.parse(`${data}`)
-  players.value.forEach(((o, ind) => {
-    const client = dataObj.clients?.find(o => o.token === dataObj.token) || {}
-    players.value[ind].online = (client && client.token === o.token)
-  }))
-
-  if (dataObj.type === 'CONNECTION') {
-    addSnackbar({ message: dataObj.message, type: 'success' })
-  }
-  else if (dataObj.type === 'CONNECTED_CLIENT') {
-    addSnackbar({ message: dataObj.message })
-  }
-  else if (dataObj.type === 'DISCONNECTED_CLIENT') {
-    addSnackbar({ message: dataObj.message })
-  }
-  else if (dataObj.type === 'READY') {
-    addSnackbar({ message: dataObj.message, type: 'success' })
-  }
-  else if (dataObj.type === 'ERROR') {
-    addSnackbar({ message: dataObj.message, type: 'error' })
-  }
-
-  console.log('Сообщение от сервера: ', dataObj)
+socket.on('joined', () => {
+  addSnackbar({ message: 'Вы присоединились', type: 'success' })
 })
+
+socket.on('joined_player', ({ client, tokens }) => {
+  addSnackbar({ message: `Игрок ${client.player?.name} присоединился` })
+  updatePlayers(tokens)
+})
+
+socket.on('error', ({ message }) => {
+  addSnackbar({ message, type: 'error' })
+})
+
+socket.on('left_player', ({ player, tokens }) => {
+  addSnackbar({ message: `Игрок ${player?.name} отключился`, type: 'warning' })
+  updatePlayers(tokens)
+})
+
+function updatePlayers (tokens) {
+  players.value.forEach((player, ind) => {
+    players.value[ind].online = tokens.includes(player.token)
+  })
+}
+
+// socket.value.on('open', () => {
+//   socket.value.emit('connection', {
+//     ...dataWs,
+//   })
+// })
+//
+// socket.value.on('message', ({ data }) => {
+//   let dataObj
+//   try {
+//     dataObj = JSON.parse(data)
+//   }
+//   catch (error) {
+//     console.error('Ошибка при разборе данных:', error);
+//     return;
+//   }
+//
+//   if (Array.isArray(dataObj.clients)) {
+//     updatePlayerStatuses(dataObj.clients);
+//   }
+//
+//   handleServerMessage(dataObj);
+//
+//   console.log('Сообщение от сервера:', dataObj);
+// })
+
+// function updatePlayerStatuses (clients) {
+//   players.value.forEach((player, index) => {
+//     players.value[index].online = clients.some(o => o.token === player.token)
+//   })
+// }
+
+// function handleServerMessage (dataObj) {
+//   const { type, message } = dataObj
+//
+//   if (!type || !message) {
+//     console.warn('Получено некорректное сообщение от сервера:', dataObj)
+//     return
+//   }
+//
+//   switch (type) {
+//     case 'CONNECTION':
+//     case 'READY':
+//       addSnackbar({ message, type: 'success' })
+//       break;
+//     case 'CONNECTED_CLIENT':
+//     case 'DISCONNECTED_CLIENT':
+//       addSnackbar({ message })
+//       break
+//     case 'ERROR':
+//       addSnackbar({ message, type: 'error' })
+//       break
+//     default:
+//       console.warn('Неизвестный тип сообщения:', type)
+//       break
+//   }
+// }
 
 function addPlayer () {
   if (
@@ -144,12 +202,6 @@ function addPlayer () {
     gameJeopardyStore.addPlayer(form)
     displayDialogAddPlayer.value = false
     formPlayer.value = { ...formPlayerModel }
-
-    socket.send(JSON.stringify({
-      ...dataWs,
-      type: 'NEW_PLAYER',
-      players: players.value,
-    }))
   }
 }
 

@@ -1,118 +1,134 @@
-const WebSocket = require('ws')
+const { Server } = require('socket.io')
+const jeopardy = require('./ws/jeopardy')
 
-const server = new WebSocket.Server({ port: 8088 })
+const port = process.env.WS_PORT
+const ws = new Server(port, {
+  cors: { origin: '*' },
+})
 const clients = new Map()
 
-server.on('connection', (ws) => {
+console.info(`Сервер Socket.IO запущен на ws://localhost:${port}`)
+
+disconnectAllClients()
+
+ws.on('connection', (socket) => {
   console.info('Новый клиент подключился')
 
-  // Обработка при подключении
-  ws.on('message', (json) => {
-    const data = JSON.parse(json)
-    let client = clients.get(ws)
-    let adminGameWs = getAdmin(data?.game)
-    let adminGame = clients.get(adminGameWs)
+  socket.on('join_admin', (data) => {
+    if (!clients.has(socket)) {
+      const admin = getGameAdmin(data)
 
-    console.log(`Получено от клиента: ${JSON.stringify(data)}`)
-    /* проверка клиента на соответствие условий */
-    if (!client && data.type === 'CONNECTION' && data.game && (
-      (adminGame && adminGame.players.some(o => o.token === data.token)) ||
-      (!adminGame && data.admin)
-    )) {
-      /* Добавление клиента */
-      const clientData = { ...data }
-      if (adminGame) {
-        clientData.player = adminGame.players.find(o => o.token === data.token) || {}
+      if (!admin && data.admin) {
+        clients.set(socket, data)
+        socket.emit('joined')
+        console.info('Админ присоединился', data)
       }
-      clients.set(ws, clientData)
-      client = clientData
-    }
-    else {
-      ws.send(JSON.stringify({
-        type: 'ERROR',
-        message: 'Проверка не пройдена, подключение не удалось',
-      }))
-
-      return
-    }
-
-    adminGameWs = getAdmin(client.game)
-    adminGame = clients.get(adminGameWs)
-
-    const isAdmin = client.admin
-    const clientsInGame = getClients(client.game)
-    const dataWs = { ...client }
-
-    /* Если клиент - админ */
-    if (isAdmin) {
-      /* Возвращаем всех подключенных клиентов игроков */
-      dataWs.clients = clientsInGame.filter(player => !player.admin)
-    }
-
-    if (client.type === 'READY') {
-      ws.send(JSON.stringify({
-        ...dataWs,
-        message: 'Вы выготовы отвечать',
-      }))
-    }
-    else if (client.type === 'CONNECTION') {
-      ws.send(JSON.stringify({
-        ...dataWs,
-        message: 'Вы подключились к серверу',
-      }))
-
-      if (!isAdmin) {
-        adminGameWs.send(JSON.stringify({
-          type: 'CONNECTED_CLIENT',
-          token: client.token,
-          message: `Новый клиент: ${client.player?.name || client.token}`,
-          clients: getClients(client.game).filter(player => !player.admin),
-        }))
+      else {
+        emitError(socket, 'Присоединение не удалось')
       }
-    }
-    else {
-      ws.send(JSON.stringify({
-        type: 'ERROR',
-        message: 'Неизвестный тип сообщения',
-      }))
     }
   })
 
-  ws.on('close', () => {
-    const client = clients.get(ws)
+  socket.on('join_player', (data) => {
+    if (!clients.has(socket)) {
+      const admin = getGameAdmin(data)
 
-    if (client) {
-      clients.delete(ws)
+      if (admin && isExistToken(admin, data)) {
+        clients.set(socket, data)
+        const player = admin.players.find(o => o.token === data.token)
+        const tokens = getTokens()
 
-      const adminGameWs = getAdmin(client.game)
-      const message = `Клиент отключился: ${client.player?.name || client.token}`
-
-      console.info(message)
-
-      if (adminGameWs && !client.admin) {
-        adminGameWs.send(JSON.stringify({
-          type: 'DISCONNECTED_CLIENT',
-          token: client.token,
-          clients: getClients(client.game).filter(player => !player.admin),
-          message,
-        }))
+        socket.emit('joined', { ...data, player })
+        admin.socket.emit('joined_player', { client: { ...data, player }, tokens })
+        console.info('Игрок присоединился', data)
       }
-    } else {
-      console.error('Не удалось найти информацию о клиенте')
+      else {
+        emitError(socket, 'Присоединение не удалось')
+      }
     }
+  })
+
+  socket.on('update_players', (data) => {
+    const admin = getGameAdmin(data)
+
+    if (admin) {
+      admin.players = data.players
+      clients.set(admin.socket, admin)
+
+      data.players.forEach(player => {
+        const client = getPlayerWithSocket(player.token)
+
+        if (client) {
+          client.socket.emit('updated_player', player)
+        }
+      })
+
+      console.info('Игроки обновлены', data)
+    }
+  })
+
+  /* jeopardy */
+  socket.on('new_quest', (data) => jeopardy.newQuest(socket, data, getPlayersWithSocket(data)))
+  socket.on('player_ready', (data) => jeopardy.playerReady(socket, data, getGameAdmin(data), emitError))
+
+  socket.on('disconnecting', (reason) => {
+    const client = clients.get(socket)
+    const admin = getGameAdmin({ game: client?.game })
+
+    clients.delete(socket)
+
+    if (admin) {
+      const player = admin.players.find(o => o.token === client.token)
+      const tokens = getTokens()
+
+      admin.socket.emit('left_player', { player, tokens })
+    }
+
+    console.info('Клиент отключился', reason, client)
   })
 })
 
-console.info('Сервер WebSocket запущен на ws://localhost:8088')
 
-function getClients (game) {
-  return Array.from(clients.values())
-    .filter(client => client.token && client.game === game)
+function getTokens () {
+  return Array.from(clients).map(([, o]) => o.token)
 }
 
-function getAdmin (game) {
-  return Array.from(clients.keys()).find((ws) => {
-    const clientData = clients.get(ws)
-    return clientData.admin && clientData.game === game
+function getPlayerWithSocket (token) {
+  for (const [socket, clientData] of clients) {
+    if (clientData.token === token) {
+      return { ...clientData, socket }
+    }
+  }
+  return null
+}
+
+function getPlayersWithSocket (data) {
+  return Array.from(clients)
+    .filter(([socket, clientData]) => clientData.game === data?.game)
+    .map(([socket, clientData]) => ({ ...clientData, socket }))
+}
+
+function getGameAdmin (data) {
+  for (const [socket, clientData] of clients) {
+    if (clientData.admin && clientData.game === data?.game) {
+      return { ...clientData, socket }
+    }
+  }
+  return null
+}
+
+function emitError (socket, message) {
+  socket.emit('error', { message })
+  console.error(message)
+}
+
+function isExistToken (admin, data) {
+  return admin?.players.some(o => o.token === data?.token) || false
+}
+
+function disconnectAllClients () {
+  ws.sockets.sockets.forEach((socket) => {
+    socket.disconnect(true)
   })
+  console.log('Все клиенты отключены')
 }
