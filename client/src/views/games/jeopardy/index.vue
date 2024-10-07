@@ -4,9 +4,13 @@ LayoutGameJeopardy
     GameBlock(
       :config="config"
       :socket="socket"
+      :connected="state.connected"
     )
 
-  v-card(:title="$t('players')")
+  v-card(
+    :disabled="!state.connected"
+    :title="$t('players')"
+  )
     template(v-slot:append)
       v-btn(
         :disabled="!canAddPlayer"
@@ -67,14 +71,14 @@ LayoutGameJeopardy
 import LayoutGameJeopardy from '@/components/layouts/games/Jeopardy.vue'
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
 import GameBlock from './Game.vue'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { inject } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 import { genToken } from '@/utils/common.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useSocketIO } from '@/composables/useSocketIO'
 
-const { socket } = useSocketIO(inject('wsUrl'))
+const { socket, state } = useSocketIO(inject('wsUrl'))
 const { addSnackbar } = useSnackbar()
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'

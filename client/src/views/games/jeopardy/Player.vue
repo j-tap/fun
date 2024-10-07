@@ -20,17 +20,23 @@ LayoutGameJeopardy
 <script setup>
 import LayoutGameJeopardy from '@/components/layouts/games/Jeopardy.vue'
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
-import { inject, ref } from 'vue'
+import { inject, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useSocketIO } from '@/composables/useSocketIO'
 
 const route = useRoute()
-const { socket } = useSocketIO(inject('wsUrl'))
+const { socket, state } = useSocketIO(inject('wsUrl'))
 const { addSnackbar } = useSnackbar()
 const { token } = route.query
 const player = ref({})
 const canReady = ref(false)
+
+watch(() => state.connected, (value) => {
+  if (!value) {
+    player.value = { ...player.value, online: false }
+  }
+})
 
 socket.connect()
 

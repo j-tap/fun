@@ -3,6 +3,7 @@ section.game-block
   v-card-text.text-center
     v-btn(
       :text="$t('start')"
+      :disabled="!connected"
       color="info"
       size="x-large"
       variant="outlined"
@@ -118,7 +119,11 @@ const props = defineProps({
   socket: {
     type: Object,
     default: () => ({})
-  }
+  },
+  connected: {
+    type: Boolean,
+    default: false
+  },
 })
 
 const gameJeopardyStore = useGameJeopardyStore()
