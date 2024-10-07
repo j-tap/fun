@@ -9,12 +9,12 @@ LayoutGameJeopardy
       .d-flex.justify-center.ma-6
         v-btn(
           v-if="player?.token"
+          :disabled="!canReady"
           color="success"
           variant="outlined"
           size="x-large"
           @click="sendReady"
-        )
-          | Ответить
+        ) {{ $t('games.jeopardy.give_answer') }}
 </template>
 
 <script setup>
@@ -30,6 +30,7 @@ const { socket } = useSocketIO(inject('wsUrl'))
 const { addSnackbar } = useSnackbar()
 const { token } = route.query
 const player = ref({})
+const canReady = ref(false)
 
 socket.connect()
 
@@ -45,6 +46,7 @@ socket.on('joined', (data) => {
 
 socket.on('can_ready', () => {
   addSnackbar({ message: 'Вы можете отвечать', type: 'success' })
+  canReady.value = true
 })
 
 socket.on('updated_player', (playerData) => {
@@ -55,35 +57,13 @@ socket.on('error', ({ message }) => {
   addSnackbar({ message, type: 'error' })
 })
 
-// socket.addEventListener('message', ({ data }) => {
-//   const dataObj = JSON.parse(`${data}`);
-//
-//   // Проверяем тип сообщения
-//   if (dataObj.type === 'CONNECTION') {
-//     player.value = {
-//       ...player.value,
-//       ...dataObj.player,
-//     }
-//     addSnackbar({ message: 'Соединение установлено', type: 'success' })
-//   }
-//   else if (dataObj.type === 'READY') {
-//     console.log('Ответ на READY:', dataObj);
-//     addSnackbar({ message: 'Вы отвечаете', type: 'success' })
-//   }
-//   else if (dataObj.type === 'ERROR') {
-//     addSnackbar({ message: dataObj.message, type: 'error' })
-//   }
-//
-//   console.log('Сообщение от сервера: ', dataObj);
-// });
-
-
 function sendReady () {
   socket.emit('player_ready', {
     game: 'jeopardy',
     player: player.value,
     token,
   })
+  canReady.value = false
 }
 </script>
 

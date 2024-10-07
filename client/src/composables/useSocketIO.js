@@ -1,9 +1,10 @@
-import { onBeforeUnmount, reactive, ref } from 'vue'
+import { onBeforeUnmount, reactive } from 'vue'
 import { io } from 'socket.io-client'
 import { useSnackbar } from '@/composables/useSnackbar'
 
 export const optionsDefault = {
   autoConnect: false,
+  path: '/socket.io/',
 }
 
 export function useSocketIO (url, options = optionsDefault) {

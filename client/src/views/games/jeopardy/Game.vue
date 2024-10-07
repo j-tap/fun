@@ -76,15 +76,20 @@ section.game-block
             )
             v-btn(
               v-else
+              :disabled="!currentPlayer"
               :text="$t('games.jeopardy.answer')"
               color="info"
               @click="displayAnswer = true"
             )
 
-        GamesJeopardyPlayer.d-inline-block.mt-8(:value="currentPlayer")
+        GamesJeopardyPlayer.d-inline-block.mt-8(
+          v-if="currentPlayer"
+          :value="currentPlayer"
+        )
 
       template(v-slot:actions)
         v-btn(
+          :disabled="!currentPlayer"
           icon="mdi-thumb-down"
           color="error"
           size="x-large"
@@ -92,6 +97,7 @@ section.game-block
         )
         v-spacer
         v-btn(
+          :disabled="!currentPlayer"
           icon="mdi-thumb-up"
           color="success"
           size="x-large"
