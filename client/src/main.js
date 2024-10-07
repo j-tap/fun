@@ -7,6 +7,9 @@ import store from '@/store'
 import App from '@/App.vue'
 import '@/registerServiceWorker'
 
+const wsProtocol = import.meta.env.VITE_APP_NODE_ENV === 'production' ? 'wss' : 'ws'
+const wsUrl = `${wsProtocol}://${import.meta.env.VITE_APP_SERVER_URL}`
+
 const app = createApp(App)
 
 app.use(i18n)
@@ -15,6 +18,6 @@ app.use(router)
 app.use(vuetify)
 app.use(btnMicroanim)
 
-app.provide('wsUrl', `ws://${import.meta.env.VITE_APP_SERVER_URL}`)
+app.provide('wsUrl', wsUrl)
 
 app.mount('#app')
