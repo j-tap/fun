@@ -3,9 +3,10 @@
   "private": true,
   "packageManager": "yarn@4.5.0",
   "scripts": {
-    "serve": "node --env-file=.env server.js"
+    "serve": "node server.js"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "socket.io": "^4.8.0"
   }
 }

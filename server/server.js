@@ -1,4 +1,5 @@
 const { Server } = require('socket.io')
+require('dotenv').config()
 const jeopardy = require('./ws/jeopardy')
 
 const port = process.env.WS_PORT
