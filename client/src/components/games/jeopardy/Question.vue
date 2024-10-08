@@ -23,6 +23,11 @@ v-card.question.text-center
           @click="isDisplayAnswer = true"
         )
 
+    TimerCircle.my-6(
+      :seconds="20"
+      @stop="timerStop"
+    )
+
     GamesJeopardyPlayer.d-inline-block.mt-12(
       v-if="player"
       :value="player"
@@ -53,6 +58,7 @@ v-card.question.text-center
 
 <script setup>
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
+import TimerCircle from '@/components/TimerCircle.vue'
 import { ref, watch } from 'vue'
 
 const props = defineProps({
@@ -86,6 +92,10 @@ function close () {
 
 function updatePoints (success) {
   emits('updatePoints', { player: props.player, success })
+}
+
+function timerStop () {
+  isTryAnswered.value = true
 }
 </script>
 
