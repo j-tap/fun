@@ -44,7 +44,6 @@ v-card
 <script setup>
 import { computed } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
-import useArray from '@/composables/useArray.js'
 
 const props = defineProps({
   categories: {
@@ -59,10 +58,8 @@ const emit = defineEmits([
 ])
 
 const gameJeopardyStore = useGameJeopardyStore()
-const { shuffleArray } = useArray()
-const list = computed(() => formatList(props.categories))
-const titles = computed(() => list.value.map(o => o.title))
-const rows = computed(() => getRows(list.value))
+const titles = computed(() => props.categories.map(o => o.title))
+const rows = computed(() => getRows(props.categories))
 
 function resetQuestions () {
   gameJeopardyStore.clearQuestionsUnavailable()
@@ -91,20 +88,6 @@ function getRows (arr = []) {
     })
     return grouped
   }, [])
-}
-
-function formatList (arr = []) {
-  const arrayWithIds = arr.map((category, indexCategory) => ({
-    ...category,
-    id: indexCategory,
-    questions: category.questions
-      .map((question, indexQuestion) => ({
-        ...question,
-        id: `${indexCategory}-${indexQuestion}`,
-      })),
-  }))
-
-  return shuffleArray(arrayWithIds).slice(0, 5)
 }
 </script>
 

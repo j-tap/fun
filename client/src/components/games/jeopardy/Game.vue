@@ -38,21 +38,21 @@ section.game-block
 <script setup>
 import GameCategories from './Categories.vue'
 import GameQuestion from './Question.vue'
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 
 const props = defineProps({
-  config: {
-    type: Object,
-    default: () => ({})
+  categories: {
+    type: Array,
+    default: () => [],
   },
   socket: {
     type: Object,
-    default: () => ({})
+    default: () => ({}),
   },
   connected: {
     type: Boolean,
-    default: false
+    default: false,
   },
 })
 
@@ -60,7 +60,6 @@ const gameJeopardyStore = useGameJeopardyStore()
 const displayDialogCategories = ref(false)
 const displayDialogQuestion = ref(false)
 const displayAnswer = ref(false)
-const categories = computed(() => props.config?.items || [])
 const currentQuestion = ref(null)
 const currentPlayer = ref(null)
 

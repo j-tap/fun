@@ -28,6 +28,7 @@
 
   "games.jeopardy.title": "Jeopardy",
   "games.jeopardy.description": "Juego del conocimiento.\nLos jugadores responden preguntas del cuestionario.\nLas preguntas se dividen en categorías y tienen diferentes costos.\nLos jugadores eligen preguntas y las responden.\nLa respuesta correcta aporta puntos, la respuesta incorrecta quita puntos.\nGana el jugador que tenga más puntos al final del juego.",
+  "games.jeopardy.categories": "Categorías",
   "games.jeopardy.categories_questions": "Categorías de preguntas",
   "games.jeopardy.answer": "Respuesta",
   "games.jeopardy.give_answer": "Responder",

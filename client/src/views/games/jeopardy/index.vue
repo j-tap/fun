@@ -2,7 +2,7 @@
 LayoutGameJeopardy
   v-card-text.text-center
     GamesJeopardyBlock(
-      :config="config"
+      :categories="selectedCategories"
       :socket="socket"
       :connected="state.connected"
     )
@@ -22,12 +22,16 @@ import { inject } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useSocketIO } from '@/composables/useSocketIO'
+import useArray from '@/composables/useArray'
 
 const { socket, state } = useSocketIO(inject('wsUrl'))
 const { addSnackbar } = useSnackbar()
+const { shuffleArray } = useArray()
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'
 const config = ref(null)
+const categories = computed(() => config.value?.items || [])
+const selectedCategories = computed(() => formatList(categories.value))
 const players = computed(() => gameJeopardyStore.players)
 
 fetch(`${path}/config.json`).then(async response => {
@@ -69,5 +73,19 @@ function updatePlayers (tokens) {
   players.value.forEach((player, ind) => {
     players.value[ind].online = tokens.includes(player.token)
   })
+}
+
+function formatList (arr = []) {
+  const arrayWithIds = arr.map((category, indexCategory) => ({
+    ...category,
+    id: indexCategory,
+    questions: category.questions
+      .map((question, indexQuestion) => ({
+        ...question,
+        id: `${indexCategory}-${indexQuestion}`,
+      })),
+  }))
+
+  return shuffleArray(arrayWithIds).slice(0, 5)
 }
 </script>
