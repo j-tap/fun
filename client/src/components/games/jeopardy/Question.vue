@@ -1,9 +1,9 @@
 <template lang="pug">
-v-card.question
+v-card.question.text-center
   v-card-title
-    .text-h4.text-medium-emphasis.text-center
+    .text-h4.text-medium-emphasis.pt-4
       |{{ question.categoryTitle }} {{ question.points }}
-  v-card-text.text-center.mt-6.mb-12
+  v-card-text.mt-6.mb-12
     .question__text.mx-auto.text-h6.mb-6 {{ question.title }}
     v-row
       v-col(cols="12" md="6" offset-md="3" )
@@ -20,11 +20,10 @@ v-card.question
           :text="$t('games.jeopardy.answer')"
           color="info"
           variant="outlined"
-          size="large"
           @click="isDisplayAnswer = true"
         )
 
-    GamesJeopardyPlayer.d-inline-block.mt-8(
+    GamesJeopardyPlayer.d-inline-block.mt-12(
       v-if="player"
       :value="player"
     )

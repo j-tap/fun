@@ -1,7 +1,7 @@
 import Home from '@/views/Home.vue'
 import GamesCrocodile from '@/views/games/Crocodile.vue'
 import GamesJeopardy from '@/views/games/jeopardy/index.vue'
-import GamesJeopardyPlayer from '@/views/games/jeopardy/Player.vue'
+import GamesJeopardyPlayer from '@/views/games/jeopardy/player.vue'
 import LearningReadRu from '@/views/learning/ReadRu/index.vue'
 import LearningReadEs from '@/views/learning/ReadEs/index.vue'
 

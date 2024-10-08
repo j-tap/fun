@@ -27,23 +27,24 @@ v-card
               @click="selectQuestion(question)"
             )
   template(v-slot:actions)
-    v-btn(
-      :text="$t('reset')"
-      variant="plain"
-      @click="resetQuestions"
-    )
-    v-spacer
-    v-btn(
-      :text="$t('close')"
-      variant="plain"
-      @click="close"
-    )
+    .d-flex.w-100.justify-space-between.align-center
+      v-btn(
+        :text="$t('reset')"
+        variant="plain"
+        @click="resetQuestions"
+      )
+      v-btn(
+        :text="$t('close')"
+        variant="plain"
+        @click="close"
+      )
+      .opacity-0 dummy-btn
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { useGameJeopardyStore } from '@/store/games/jeopardy'
-import useArray from '@/composables/useArray'
+import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
+import useArray from '@/composables/useArray.js'
 
 const props = defineProps({
   categories: {

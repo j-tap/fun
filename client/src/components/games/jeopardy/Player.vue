@@ -1,12 +1,13 @@
 <template lang="pug">
 v-hover(v-if="value")
   template(v-slot:default="{ isHovering, props }")
-    v-card(
+    v-card.text-left(
       v-bind="props"
       :class="$attrs.class"
       :title="value.name || 'Unknown'"
       color="info"
-      variant="outlined"
+      variant="tonal"
+      min-width="260"
     )
       template(v-slot:prepend)
         v-badge.mr-4(

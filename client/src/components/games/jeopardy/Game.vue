@@ -38,8 +38,8 @@ section.game-block
 <script setup>
 import GameCategories from './Categories.vue'
 import GameQuestion from './Question.vue'
-import { computed, ref, watch } from 'vue'
-import { useGameJeopardyStore } from '@/store/games/jeopardy'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 
 const props = defineProps({
   config: {
@@ -72,6 +72,13 @@ watch(displayDialogQuestion, (val) => {
     displayAnswer.value = false
     setCurrentPlayer()
   }
+})
+
+onMounted(() => {
+  const script = document.createElement('script')
+  script.src = 'https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1'
+  script.async = true
+  document.body.appendChild(script)
 })
 
 props.socket.on('player_quested', ({ player }) => {
