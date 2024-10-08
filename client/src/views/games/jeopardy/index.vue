@@ -20,7 +20,6 @@ import GamesJeopardyBlock from '@/components/games/jeopardy/Game.vue'
 import { computed, ref, watch } from 'vue'
 import { inject } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
-import { genToken } from '@/utils/common.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useSocketIO } from '@/composables/useSocketIO'
 

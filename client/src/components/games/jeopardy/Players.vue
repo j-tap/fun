@@ -64,7 +64,7 @@
 <script setup>
 import GamesJeopardyPlayer from '@/components/games/jeopardy/Player.vue'
 import { computed, ref } from 'vue'
-import { genToken } from '@/utils/common.js'
+import { genToken } from '@/utils/common'
 import { useGameJeopardyStore } from '@/store/games/jeopardy'
 
 const props = defineProps({

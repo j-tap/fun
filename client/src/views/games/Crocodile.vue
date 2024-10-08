@@ -17,7 +17,7 @@ LayoutBasePage(
         .d-flex.justify-center
           CardsStack.mt-2.mb-10(
             ref="elCardsStack"
-            v-touch="{ left: () => getItem }"
+            v-touch="{ left: () => getItem() }"
           )
             .d-flex.flex-column.w-100
               .text-h4.text-center.mb-2 {{ currentItem?.titles[locale] }}
