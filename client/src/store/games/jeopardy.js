@@ -25,8 +25,10 @@ export const useGameJeopardyStore = defineStore(id, () => {
     }
   }
 
-  const addQuestionsUnavailable = (value = 0) => {
-    questionsUnavailable.value.push(value)
+  const addQuestionsUnavailable = (value = null) => {
+    if (value) {
+      questionsUnavailable.value.push(value)
+    }
   }
 
   const clearQuestionsUnavailable = () => {

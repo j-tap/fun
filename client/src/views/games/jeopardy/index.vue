@@ -10,6 +10,7 @@ LayoutGameJeopardy
   v-card(
     :disabled="!state.connected"
     :title="$t('players')"
+    variant="flat"
   )
     template(v-slot:append)
       v-btn(
@@ -49,7 +50,7 @@ LayoutGameJeopardy
           @click="displayDialogAddPlayer = false"
         )
       v-card-text
-        v-form
+        v-form(@keydown.enter.stop.prevent="addPlayer")
           v-text-field(
             v-model="formPlayer.name"
             :label="$t('player_name')"

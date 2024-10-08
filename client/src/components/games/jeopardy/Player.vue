@@ -11,9 +11,11 @@ v-hover(v-if="value")
       template(v-slot:prepend)
         v-badge.mr-4(
           :color="value.online ? 'success' : 'error'"
+          floating
           dot
         )
-          v-icon(:color="value.color" size="x-large") mdi-account
+          v-avatar(:size="40" :color="value.color")
+            v-icon mdi-account
 
       template(v-slot:subtitle)
         span {{ $t('points') }}:&nbsp;
