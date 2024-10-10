@@ -4,6 +4,14 @@
   "related": ["Pictionary", "Taboo", "Heads Up!"],
   "items": [
     {
+      "name": "armadillo",
+      "titles": {
+        "en": "Armadillo",
+        "es": "Armadillo",
+        "ru": "Броненосец"
+      }
+    },
+    {
       "name": "bat",
       "titles": {
         "en": "Bat",
@@ -387,12 +395,20 @@
       }
     },
     {
-      "name": "mike",
+      "name": "mammoth",
+      "titles": {
+        "en": "Mammoth",
+        "es": "Mamut",
+        "ru": "Мамонт"
+      }
+    },
+    {
+      "name": "mickey-mouse",
       "category": "characters",
       "titles": {
-        "en": "Mike mouse",
-        "es": "Mike ratón",
-        "ru": "Майк Маус"
+        "en": "Mickey Mouse",
+        "es": "Mickey Mouse",
+        "ru": "Микки Маус"
       }
     },
     {
