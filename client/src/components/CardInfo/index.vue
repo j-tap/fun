@@ -3,7 +3,7 @@ v-container(
   max-width="340"
 )
   v-card.mx-auto(
-    v-touch="{ left: () => getPrevCard(), right: () => getNextCard() }"
+    v-touch="{ left: () => getNextCard(), right: () => getPrevCard() }"
     :variant="outlined ? 'outlined' : undefined"
     :color="color"
     @click="click"
@@ -14,8 +14,8 @@ v-container(
     v-img.align-end.select-none(
       v-else
       :src="src"
+      :gradient="src ? 'to bottom, rgba(0,0,0,0), rgba(0,0,0,.8)' : undefined"
       aspect-ratio="1"
-      gradient="to bottom, rgba(0,0,0,0), rgba(0,0,0,.8)"
       cover
     )
       v-card-actions.align-end

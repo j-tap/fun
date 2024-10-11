@@ -4,11 +4,29 @@
   "related": ["Pictionary", "Taboo", "Heads Up!"],
   "items": [
     {
+      "name": "apple",
+      "category": "fruits",
+      "titles": {
+        "en": "Apple",
+        "es": "Manzana",
+        "ru": "Яблоко"
+      }
+    },
+    {
       "name": "armadillo",
       "titles": {
         "en": "Armadillo",
         "es": "Armadillo",
         "ru": "Броненосец"
+      }
+    },
+    {
+      "name": "banana",
+      "category": "fruits",
+      "titles": {
+        "en": "Banana",
+        "es": "Plátano",
+        "ru": "Банан"
       }
     },
     {
@@ -54,11 +72,29 @@
       }
     },
     {
+      "name": "builder",
+      "category": "peoples",
+      "titles": {
+        "en": "Builder",
+        "es": "Constructor",
+        "ru": "Строитель"
+      }
+    },
+    {
       "name": "bumblebee",
       "titles": {
         "en": "Bumblebee",
         "es": "Abejorro",
         "ru": "Шмель"
+      }
+    },
+    {
+      "name": "bus",
+      "category": "transport",
+      "titles": {
+        "en": "Bus",
+        "es": "Autobús",
+        "ru": "Автобус"
       }
     },
     {
@@ -75,6 +111,23 @@
         "en": "Camel",
         "es": "Camello",
         "ru": "Верблюд"
+      }
+    },
+    {
+      "name": "capybara",
+      "titles": {
+        "en": "Capybara",
+        "es": "Carpincho",
+        "ru": "Капибара"
+      }
+    },
+    {
+      "name": "car",
+      "category": "transport",
+      "titles": {
+        "en": "Car",
+        "es": "Coche",
+        "ru": "Машина"
       }
     },
     {
@@ -127,6 +180,15 @@
       }
     },
     {
+      "name": "cook",
+      "category": "peoples",
+      "titles": {
+        "en": "Cook",
+        "es": "Cocinero",
+        "ru": "Повар"
+      }
+    },
+    {
       "name": "cow",
       "titles": {
         "en": "Cow",
@@ -148,6 +210,15 @@
         "en": "Deer",
         "es": "Ciervo",
         "ru": "Олень"
+      }
+    },
+    {
+      "name": "doctor",
+      "category": "peoples",
+      "titles": {
+        "en": "Doctor",
+        "es": "Doctor",
+        "ru": "Доктор"
       }
     },
     {
@@ -199,6 +270,15 @@
       }
     },
     {
+      "name": "eiffel-tower",
+      "category": "constructions",
+      "titles": {
+        "en": "Eiffel Tower",
+        "es": "Torre Eiffel",
+        "ru": "Эйфелева башня"
+      }
+    },
+    {
       "name": "elephant",
       "titles": {
         "en": "Elephant",
@@ -221,6 +301,23 @@
         "en": "Elsa",
         "es": "Elsa",
         "ru": "Эльза"
+      }
+    },
+    {
+      "name": "ferret",
+      "titles": {
+        "en": "Ferret",
+        "es": "Hurón",
+        "ru": "Хорёк"
+      }
+    },
+    {
+      "name": "firefighter",
+      "category": "peoples",
+      "titles": {
+        "en": "Firefighter",
+        "es": "Bombero",
+        "ru": "Пожарный"
       }
     },
     {
@@ -269,6 +366,15 @@
         "en": "Goose",
         "es": "Ganso",
         "ru": "Гусь"
+      }
+    },
+    {
+      "name": "grape",
+      "category": "fruits",
+      "titles": {
+        "en": "Grape",
+        "es": "Uva",
+        "ru": "Виноград"
       }
     },
     {
@@ -326,6 +432,15 @@
         "en": "Horse",
         "es": "Caballo",
         "ru": "Лошадь"
+      }
+    },
+    {
+      "name": "house",
+      "category": "constructions",
+      "titles": {
+        "en": "House",
+        "es": "Casa",
+        "ru": "Дом"
       }
     },
     {
@@ -412,6 +527,15 @@
       }
     },
     {
+      "name": "military",
+      "category": "peoples",
+      "titles": {
+        "en": "Military",
+        "es": "Militar",
+        "ru": "Военный"
+      }
+    },
+    {
       "name": "monkey",
       "titles": {
         "en": "Monkey",
@@ -433,6 +557,15 @@
         "en": "Octopus",
         "es": "Pulpo",
         "ru": "Осьминог"
+      }
+    },
+    {
+      "name": "orange",
+      "category": "fruits",
+      "titles": {
+        "en": "Orange",
+        "es": "Naranja",
+        "ru": "Апельсин"
       }
     },
     {
@@ -460,11 +593,29 @@
       }
     },
     {
+      "name": "peach",
+      "category": "fruits",
+      "titles": {
+        "en": "Peach",
+        "es": "Melocotón",
+        "ru": "Персик"
+      }
+    },
+    {
       "name": "peacock",
       "titles": {
         "en": "Peacock",
         "es": "Pavo real",
         "ru": "Павлин"
+      }
+    },
+    {
+      "name": "pear",
+      "category": "fruits",
+      "titles": {
+        "en": "Pear",
+        "es": "Pera",
+        "ru": "Груша"
       }
     },
     {
@@ -493,6 +644,59 @@
       }
     },
     {
+      "name": "pineapple",
+      "category": "fruits",
+      "titles": {
+        "en": "Pineapple",
+        "es": "Piña",
+        "ru": "Ананас"
+      }
+    },
+    {
+      "name": "planer",
+      "category": "transport",
+      "titles": {
+        "en": "Plane",
+        "es": "Avión",
+        "ru": "Самолёт"
+      }
+    },
+    {
+      "name": "plums",
+      "category": "fruits",
+      "titles": {
+        "en": "Plums",
+        "es": "Ciruelas",
+        "ru": "Сливы"
+      }
+    },
+    {
+      "name": "polar-bear",
+      "titles": {
+        "en": "Polar Bear",
+        "es": "Oso polar",
+        "ru": "Белый медведь"
+      }
+    },
+    {
+      "name": "police-officer",
+      "category": "peoples",
+      "titles": {
+        "en": "Police Officer",
+        "es": "Policía",
+        "ru": "Полицейский"
+      }
+    },
+    {
+      "name": "pomegranate",
+      "category": "fruits",
+      "titles": {
+        "en": "Pomegranate",
+        "es": "Granada",
+        "ru": "Гранат"
+      }
+    },
+    {
       "name": "porcupine",
       "titles": {
         "en": "Porcupine",
@@ -517,11 +721,47 @@
       }
     },
     {
+      "name": "raspberry",
+      "category": "fruits",
+      "titles": {
+        "en": "Raspberry",
+        "es": "Frambuesa",
+        "ru": "Малина"
+      }
+    },
+    {
       "name": "rhinoceros",
       "titles": {
         "en": "Rhinoceros",
         "es": "Rinoceronte",
         "ru": "Носорог"
+      }
+    },
+    {
+      "name": "robber",
+      "category": "peoples",
+      "titles": {
+        "en": "Robber",
+        "es": "Ladrón",
+        "ru": "Грабитель"
+      }
+    },
+    {
+      "name": "rocket",
+      "category": "transport",
+      "titles": {
+        "en": "Rocket",
+        "es": "Cohete",
+        "ru": "Ракета"
+      }
+    },
+    {
+      "name": "schoolgirl",
+      "category": "peoples",
+      "titles": {
+        "en": "Schoolgirl",
+        "es": "Colegiala",
+        "ru": "Школьница"
       }
     },
     {
@@ -557,12 +797,38 @@
       }
     },
     {
+      "name": "ship",
+      "category": "transport",
+      "titles": {
+        "en": "Ship",
+        "es": "Barco",
+        "ru": "Корабль"
+      }
+    },
+    {
+      "name": "singer",
+      "category": "peoples",
+      "titles": {
+        "en": "Singer",
+        "es": "Cantante",
+        "ru": "Певица"
+      }
+    },
+    {
       "name": "smurf",
       "category": "characters",
       "titles": {
         "en": "Smurf",
         "es": "Pitufo",
         "ru": "Смурф"
+      }
+    },
+    {
+      "name": "snail",
+      "titles": {
+        "en": "Snail",
+        "es": "Caracol",
+        "ru": "Улитка"
       }
     },
     {
@@ -609,11 +875,28 @@
       }
     },
     {
+      "name": "spruce",
+      "category": "trees",
+      "titles": {
+        "en": "Spruce",
+        "es": "Abeto",
+        "ru": "Ель"
+      }
+    },
+    {
       "name": "squirrel",
       "titles": {
         "en": "Squirrel",
         "es": "Ardilla",
         "ru": "Белка"
+      }
+    },
+    {
+      "name": "starfish",
+      "titles": {
+        "en": "Starfish",
+        "es": "Estrella de mar",
+        "ru": "Морская звезда"
       }
     },
     {
@@ -633,6 +916,23 @@
       }
     },
     {
+      "name": "strawberry",
+      "titles": {
+        "en": "Strawberry",
+        "es": "Fresa",
+        "ru": "Клубника"
+      }
+    },
+    {
+      "name": "submarine",
+      "category": "transport",
+      "titles": {
+        "en": "Submarine",
+        "es": "Submarino",
+        "ru": "Подводная лодка"
+      }
+    },
+    {
       "name": "superman",
       "category": "characters",
       "titles": {
@@ -642,11 +942,29 @@
       }
     },
     {
+      "name": "teacher",
+      "category": "peoples",
+      "titles": {
+        "en": "Teacher",
+        "es": "Profesor",
+        "ru": "Учитель"
+      }
+    },
+    {
       "name": "tiger",
       "titles": {
         "en": "Tiger",
         "es": "Tigre",
         "ru": "Тигр"
+      }
+    },
+    {
+      "name": "train",
+      "category": "transport",
+      "titles": {
+        "en": "Train",
+        "es": "Tren",
+        "ru": "Поезд"
       }
     },
     {
