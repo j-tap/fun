@@ -11,7 +11,7 @@ services:
       - "traefik.http.routers.funvr9pro-server.tls.certresolver=myresolver"
       - "traefik.http.routers.funvr9pro-server.middlewares=funvr9pro-server-stripprefix"
       - "traefik.http.middlewares.funvr9pro-server-stripprefix.stripprefix.prefixes=/api"
-      - "traefik.http.services.funvr9pro-server.loadbalancer.server.port=${PORT_SERVER}"
+      - "traefik.http.services.funvr9pro-server.loadbalancer.server.port=${WS_PORT}"
 
       # HTTP redirect
       - "traefik.http.routers.funvr9pro-server-http.rule=Host(`${TRAEFIK_DOMAIN}`) && PathPrefix(`/api`)"
@@ -35,5 +35,5 @@ services:
       - "traefik.http.routers.funvr9pro-client-http.entrypoints=web"
       - "traefik.http.routers.funvr9pro-client-http.middlewares=https-redirect"
 
-      # Middleware definition
+      # Middleware
       - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"

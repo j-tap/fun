@@ -22,11 +22,11 @@ services:
       context: ./client
       args:
         MODE: production
+    command: |
+      sh -c "bunx serve dist --port 3000 --single"
+    working_dir: /app
     networks:
       - traefik
-    volumes:
-      - ./client/dist:/app/dist:ro
-    working_dir: /app
 
 networks:
   traefik:
