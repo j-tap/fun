@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
-RUN apk add --no-cache git
+RUN apt update && apt install -y git
 
 COPY . .
 RUN bun run build
