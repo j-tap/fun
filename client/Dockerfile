@@ -13,7 +13,6 @@ RUN apk add --no-cache lighttpd
 WORKDIR /static
 COPY --from=builder /app/dist .
 
-# Настроить lighttpd
 RUN echo "server.document-root = \"/static\"" > /etc/lighttpd/lighttpd.conf
 
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]

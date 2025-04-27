@@ -27,8 +27,6 @@ services:
     volumes:
       - ./client/dist:/app/dist:ro
     working_dir: /app
-    command: |
-      sh -c "bunx serve dist --port 80 --single"
 
 networks:
   traefik:
