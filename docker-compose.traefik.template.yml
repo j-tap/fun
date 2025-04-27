@@ -6,15 +6,15 @@ services:
       - "traefik.enable=true"
 
       # HTTPS
-      - "traefik.http.routers.funvr9pro-server.rule=Host(`${TRAEFIK_DOMAIN}`) && PathPrefix(`/strapi`)"
+      - "traefik.http.routers.funvr9pro-server.rule=Host(`${TRAEFIK_DOMAIN}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.funvr9pro-server.entrypoints=websecure"
       - "traefik.http.routers.funvr9pro-server.tls.certresolver=myresolver"
       - "traefik.http.routers.funvr9pro-server.middlewares=funvr9pro-server-stripprefix"
-      - "traefik.http.middlewares.funvr9pro-server-stripprefix.stripprefix.prefixes=/strapi"
+      - "traefik.http.middlewares.funvr9pro-server-stripprefix.stripprefix.prefixes=/api"
       - "traefik.http.services.funvr9pro-server.loadbalancer.server.port=${PORT_SERVER}"
 
       # HTTP redirect
-      - "traefik.http.routers.funvr9pro-server-http.rule=Host(`${TRAEFIK_DOMAIN}`) && PathPrefix(`/strapi`)"
+      - "traefik.http.routers.funvr9pro-server-http.rule=Host(`${TRAEFIK_DOMAIN}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.funvr9pro-server-http.entrypoints=web"
       - "traefik.http.routers.funvr9pro-server-http.middlewares=https-redirect,funvr9pro-server-stripprefix"
 
