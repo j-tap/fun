@@ -5,7 +5,7 @@
   "author": "j-tap",
   "private": true,
   "scripts": {
-    "serve": "node server.js"
+    "start": "bun server.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

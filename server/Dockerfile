@@ -8,4 +8,4 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
-CMD ["bun", "server.js"]
+CMD ["bun", "run", "start"]
