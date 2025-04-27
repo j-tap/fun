@@ -8,7 +8,6 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# Финальный контейнер
 FROM alpine:3.20
 
 WORKDIR /static

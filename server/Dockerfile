@@ -1,24 +1,11 @@
-FROM node:20-alpine3.18
+FROM oven/bun:1.1.13 as builder
 
 WORKDIR /app
 
-RUN mkdir -p .yarn/releases
-COPY .yarn/releases/yarn-4.8.0.cjs .yarn/releases/
-COPY .yarnrc.yml ./
+COPY package.json bun.lockb ./
 
-RUN corepack enable
-
-COPY package.json yarn.lock ./
-
-ARG MODE=dev
-ENV NODE_ENV=${MODE}
-
-RUN if [ "$MODE" = "production" ]; then \
-      yarn install --immutable --check-cache || yarn install; \
-    else \
-      yarn install; \
-    fi
+RUN bun install --frozen-lockfile
 
 COPY . .
 
-CMD ["yarn", "serve"]
+CMD ["bun", "server.js"]
