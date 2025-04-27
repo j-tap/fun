@@ -7,7 +7,11 @@ COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
 
 COPY . .
-RUN bun run build
+
+ARG COMMIT_HASH=unknown
+ENV COMMIT_HASH=${COMMIT_HASH}
+
+RUN export COMMIT_HASH=$COMMIT_HASH && bun run build
 
 # Production
 FROM node:20-alpine3.18
