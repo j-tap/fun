@@ -1,18 +1,23 @@
+# Builder bun
 FROM oven/bun:1.1.13 AS builder
 
 WORKDIR /app
+
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
+
 COPY . .
 RUN bun run build
 
-FROM alpine:3.20
+# Production
+FROM node:20-alpine3.18
 
-RUN apk add --no-cache lighttpd
+WORKDIR /app
 
-WORKDIR /static
+RUN npm install -g serve
+
 COPY --from=builder /app/dist .
 
-RUN echo "server.document-root = \"/static\"" > /etc/lighttpd/lighttpd.conf
+ENV PORT=3000
 
-CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["sh", "-c", "serve . -l $PORT -s"]

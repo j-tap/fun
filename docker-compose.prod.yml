@@ -2,6 +2,7 @@ services:
   server:
     environment:
       NODE_ENV: production
+      PORT: ${PORT_SERVER}
     ports: []
     restart: unless-stopped
     build:
@@ -16,15 +17,13 @@ services:
   client:
     environment:
       NODE_ENV: production
+      PORT: ${PORT_CLIENT}
     ports: []
     restart: unless-stopped
     build:
       context: ./client
       args:
         MODE: production
-    command: |
-      sh -c "bunx serve dist --port 3000 --single"
-    working_dir: /app
     networks:
       - traefik
 

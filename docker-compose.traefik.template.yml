@@ -11,9 +11,9 @@ services:
       - "traefik.http.routers.funvr9pro-server.tls.certresolver=myresolver"
       - "traefik.http.routers.funvr9pro-server.middlewares=funvr9pro-server-stripprefix"
       - "traefik.http.middlewares.funvr9pro-server-stripprefix.stripprefix.prefixes=/api"
-      - "traefik.http.services.funvr9pro-server.loadbalancer.server.port=${WS_PORT}"
+      - "traefik.http.services.funvr9pro-server.loadbalancer.server.port=${PORT_SERVER}"
 
-      # HTTP redirect
+      # HTTP Redirect
       - "traefik.http.routers.funvr9pro-server-http.rule=Host(`${TRAEFIK_DOMAIN}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.funvr9pro-server-http.entrypoints=web"
       - "traefik.http.routers.funvr9pro-server-http.middlewares=https-redirect,funvr9pro-server-stripprefix"
@@ -30,10 +30,10 @@ services:
       - "traefik.http.routers.funvr9pro-client.tls.certresolver=myresolver"
       - "traefik.http.services.funvr9pro-client.loadbalancer.server.port=${PORT_CLIENT}"
 
-      # HTTP redirect
+      # HTTP Redirect
       - "traefik.http.routers.funvr9pro-client-http.rule=Host(`${TRAEFIK_DOMAIN}`)"
       - "traefik.http.routers.funvr9pro-client-http.entrypoints=web"
       - "traefik.http.routers.funvr9pro-client-http.middlewares=https-redirect"
 
-      # Middleware
+      # Middleware definition
       - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
