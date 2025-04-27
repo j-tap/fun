@@ -22,11 +22,9 @@ import { inject } from 'vue'
 import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
 import { useSnackbar } from '@/composables/useSnackbar'
 import { useSocketIO } from '@/composables/useSocketIO'
-import useArray from '@/composables/useArray'
 
 const { socket, state } = useSocketIO(inject('wsUrl'))
 const { addSnackbar } = useSnackbar()
-const { shuffleArray } = useArray()
 const gameJeopardyStore = useGameJeopardyStore()
 const path = '/games/jeopardy'
 const config = ref(null)
@@ -76,7 +74,7 @@ function updatePlayers (tokens) {
 }
 
 function formatList (arr = []) {
-  const arrayWithIds = arr.map((category, indexCategory) => ({
+  return arr.map((category, indexCategory) => ({
     ...category,
     id: indexCategory,
     questions: category.questions
@@ -85,7 +83,5 @@ function formatList (arr = []) {
         id: `${indexCategory}-${indexQuestion}`,
       })),
   }))
-
-  return shuffleArray(arrayWithIds).slice(0, 5)
 }
 </script>

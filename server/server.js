@@ -1,35 +1,20 @@
-const fs = require('fs')
 const http = require('http')
-const https = require('https')
 const express = require('express')
 const { Server } = require('socket.io')
 const initWs = require('./ws')
 
 require('dotenv').config()
 
-const port = process.env.WS_PORT
+const port = process.env.WS_PORT || 3000
 const app = express()
-let server
-
-if (process.env.NODE_ENV === 'production') {
-  const sslOptions = {
-    key: fs.readFileSync(process.env.SSL_PATH_KEY),
-    cert: fs.readFileSync(process.env.SSL_PATH_CERT),
-  }
-  server = https.createServer(sslOptions, app)
-  console.log(`Используем HTTPS на wss://localhost:${port}`)
-}
-else {
-  server = http.createServer(app)
-  console.log(`Используем HTTP на ws://localhost:${port}`)
-}
+const server = http.createServer(app)
 
 const ws = new Server(server, {
-  cors: { origin: '*' },
+  cors: { origin: process.env.CLIENT_DOMAIN },
 })
 
-server.listen(port, () => {
-  console.log(`Сервер WS запущен на порту ${port}`);
+server.listen(port, '0.0.0.0', () => {
+  console.log(`WS server running on ws://0.0.0.0:${port}`)
 })
 
 initWs(ws)

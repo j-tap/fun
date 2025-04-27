@@ -1,0 +1,35 @@
+services:
+  server:
+    environment:
+      NODE_ENV: production
+    ports: []
+    restart: unless-stopped
+    build:
+      context: ./server
+      args:
+        MODE: production
+    command: "node server.js"
+    working_dir: /app
+    networks:
+      - traefik
+
+  client:
+    environment:
+      NODE_ENV: production
+    ports: []
+    restart: unless-stopped
+    build:
+      context: ./client
+      args:
+        MODE: production
+    networks:
+      - traefik
+    volumes:
+      - ./client/dist:/app/dist:ro
+    working_dir: /app
+    command: |
+      sh -c "bunx serve dist --port 80 --single"
+
+networks:
+  traefik:
+    external: true

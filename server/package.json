@@ -1,7 +1,9 @@
 {
+  "name": "fun-games-server",
+  "version": "0.1.0",
+  "description": "Gaming and learning platform",
   "author": "j-tap",
   "private": true,
-  "packageManager": "yarn@4.5.0",
   "scripts": {
     "serve": "node server.js"
   },

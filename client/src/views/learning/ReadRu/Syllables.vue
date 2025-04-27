@@ -32,7 +32,7 @@ const cardCurrent = ref({})
 
 onMounted(() => {
   const arr = getSyllables()
-  syllables.value = shuffleArray(arr)
+  syllables.value = shuffleArray(arr || [])
   getCard()
 })
 

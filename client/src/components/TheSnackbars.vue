@@ -6,6 +6,7 @@ v-snackbar-queue(
 </template>
 
 <script setup>
+import { VSnackbarQueue } from 'vuetify/components'
 import { useSnackbar } from '@/composables/useSnackbar'
 
 const { snackbars } = useSnackbar()

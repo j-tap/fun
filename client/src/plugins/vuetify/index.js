@@ -1,7 +1,7 @@
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
-import { VSnackbarQueue } from 'vuetify/labs/VSnackbarQueue'
+import { VSnackbarQueue } from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { ru, en, es } from 'vuetify/locale'
 import '@mdi/font/css/materialdesignicons.css'

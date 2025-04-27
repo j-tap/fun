@@ -86,7 +86,7 @@ fetch(`${path}/config.json`).then(async response => {
 })
 
 function initItems (arr = []) {
-  items.value = shuffleArray(arr).map(item => ({
+  items.value = shuffleArray(arr || []).map(item => ({
     ...item,
     test: 1,
     src: `${path}/images/${item.name}.webp`,

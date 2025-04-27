@@ -16,7 +16,7 @@ section.game-block
     persistent
   )
     GameCategories(
-      :categories="categories"
+      :categories="randomCategories"
       @select-question="selectQuestion"
       @close="displayDialogCategories = false"
     )
@@ -39,7 +39,8 @@ section.game-block
 import GameCategories from './Categories.vue'
 import GameQuestion from './Question.vue'
 import { onMounted, ref, watch } from 'vue'
-import { useGameJeopardyStore } from '@/store/games/jeopardy.js'
+import { useGameJeopardyStore } from '@/store/games/jeopardy'
+import useArray from '@/composables/useArray'
 
 const props = defineProps({
   categories: {
@@ -56,12 +57,14 @@ const props = defineProps({
   },
 })
 
+const { shuffleArray } = useArray()
 const gameJeopardyStore = useGameJeopardyStore()
 const displayDialogCategories = ref(false)
 const displayDialogQuestion = ref(false)
 const displayAnswer = ref(false)
 const currentQuestion = ref(null)
 const currentPlayer = ref(null)
+const randomCategories = shuffleArray(props.connected || []).slice(0, 5)
 
 watch(displayDialogQuestion, (val) => {
   if (val) {
@@ -71,13 +74,6 @@ watch(displayDialogQuestion, (val) => {
     displayAnswer.value = false
     setCurrentPlayer()
   }
-})
-
-onMounted(() => {
-  const script = document.createElement('script')
-  script.src = 'https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1'
-  script.async = true
-  document.body.appendChild(script)
 })
 
 props.socket.on('player_quested', ({ player }) => {

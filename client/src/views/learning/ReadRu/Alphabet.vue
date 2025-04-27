@@ -91,7 +91,7 @@ function getCard () {
 }
 
 function getAlphabet () {
-  return settings.value.shuffle ? shuffleArray(alphabet) : alphabet
+  return settings.value.shuffle ? shuffleArray(alphabet || []) : alphabet
 }
 
 function togglePlay () {

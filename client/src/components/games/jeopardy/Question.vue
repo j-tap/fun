@@ -40,14 +40,16 @@ v-card.question.text-center
             @click="isDisplayAnswer = true"
           )
 
-      GamesJeopardyPlayer.d-inline-block.mt-12(
-        v-if="player"
-        :value="player"
-      )
+      template(v-if="player")
+        GamesJeopardyPlayer.d-inline-block.mt-12(:value="player")
+        TimerCircle.my-6(
+          :seconds="10"
+          @stop="timerAnswerStop"
+        )
       TimerCircle.my-6(
         v-else
         :seconds="15"
-        @stop="timerStop"
+        @stop="timerAwaitStop"
       )
 
   template(v-slot:actions)
@@ -112,7 +114,11 @@ function updatePoints (success) {
   emits('updatePoints', { player: props.player, success })
 }
 
-function timerStop () {
+function timerAnswerStop () {
+  // действия если игрок не успел ответить
+}
+
+function timerAwaitStop () {
   isTryAnswered.value = true
 }
 </script>
