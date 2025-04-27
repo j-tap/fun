@@ -13,6 +13,9 @@ FROM alpine:3.20
 
 WORKDIR /static
 
+ARG COMMIT_HASH=unknown
+ENV COMMIT_HASH=${COMMIT_HASH}
+
 COPY --from=builder /app/.output/public .
 
 CMD ["sleep", "infinity"]

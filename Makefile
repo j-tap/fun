@@ -11,6 +11,7 @@ prod: merge_env generate_traefik build
 	docker compose --env-file .env -f docker-compose.prod.yml -f docker-compose.traefik.yml up -d
 
 build:
+	git_hash=$$(git rev-parse --short HEAD) && \
 	docker compose --env-file .env -f docker-compose.prod.yml -f docker-compose.traefik.yml build
 
 clean:
