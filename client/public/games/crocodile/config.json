@@ -21,6 +21,14 @@
       }
     },
     {
+      "name": "artist",
+      "titles": {
+        "en": "Artist",
+        "es": "Artista",
+        "ru": "Художник"
+      }
+    },
+    {
       "name": "banana",
       "category": "fruits",
       "titles": {
@@ -172,6 +180,22 @@
       }
     },
     {
+      "name": "closet",
+      "titles": {
+        "en": "Closet",
+        "es": "Armario",
+        "ru": "Шкаф"
+      }
+    },
+    {
+      "name": "clown",
+      "titles": {
+        "en": "Clown",
+        "es": "Payaso",
+        "ru": "Клоун"
+      }
+    },
+    {
       "name": "colibri",
       "titles": {
         "en": "Colibri",
@@ -309,6 +333,14 @@
         "en": "Ferret",
         "es": "Hurón",
         "ru": "Хорёк"
+      }
+    },
+    {
+      "name": "fireengine",
+      "titles": {
+        "en": "Fire Engine",
+        "es": "Camión de bomberos",
+        "ru": "Пожарная машина"
       }
     },
     {
